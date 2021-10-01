@@ -17,6 +17,7 @@ COMPILER_FLAGS = -Wall -Werror -Wextra -pedantic
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
+LINUX_LINKER_FLAGS = -lSDL2
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = maze
@@ -24,3 +25,10 @@ OBJ_NAME = maze
 #This is the target that compiles our executable
 all : $(OBJS)
 	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+
+#Linux SDL setup
+linux_compile :
+	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINUX_LINKER_FLAGS) -o $(OBJ_NAME)
+
+linux_install : 
+	sudo apt-get install libsdl2-dev
