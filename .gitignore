@@ -1,3 +1,6 @@
+# ignore visual studio folders
+.vscode
+
 # Prerequisites
 *.d
 
