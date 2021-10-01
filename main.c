@@ -2,6 +2,7 @@
 
 /**
  * main - Entry point
+ * 
  * Return: (0) on success, exits with failure status on failure
  */
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
@@ -15,15 +16,10 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 	}
 
 	if (!create_window("The Maze. Find your way", &sdl_g))
-	{
 		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		printf("The window was created succesfully");
-	}
 
+	loop_and_poll(&sdl_g);
 	safe_close_sdl(&sdl_g);
-	
+
 	return (0);
 }
