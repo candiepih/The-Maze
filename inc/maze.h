@@ -1,7 +1,21 @@
 #ifndef MAZE_H
 #define MAZE_H
 
+/**
+ * OS specific preprocessor directives for
+ * SDL header inclusion
+ */
+#ifdef LINUX
+#include <SDL2/SDL.h>
+#elif defined(MAC)
+#include <SDL2/SDL.h>
+#else
 #include <SDL.h>
+#endif
+
+/**
+ * Other headers
+ */
 #include "structures.h"
 #include <stdio.h>
 

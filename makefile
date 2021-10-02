@@ -26,9 +26,14 @@ OBJ_NAME = maze
 all : $(OBJS)
 	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 
-#Linux SDL setup
-linux_compile :
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINUX_LINKER_FLAGS) -o $(OBJ_NAME)
+#Linux SDL compiling
+linux : $(OBJS)
+	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINUX_LINKER_FLAGS) -DLINUX -o $(OBJ_NAME)
 
+#Linux SDL installation
 linux_install : 
 	sudo apt-get install libsdl2-dev
+
+#MAC SDL compiling
+mac : $(OBJS)
+	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINUX_LINKER_FLAGS) -DMAC -o $(OBJ_NAME)
