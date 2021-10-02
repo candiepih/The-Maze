@@ -4,19 +4,19 @@
 
 # Compilling
 
-#### Windows
+### Windows
 
 Ensure you have gcc, and make(*Can install using chocolatey*)
 
 run `make`
 
-#### Linux
+### Linux
 
 First make sure SDL is installed. If you haven't install SDL by running `make linux_install`.
 
 run `make linux` to compile.
 
-#### Mac
+### Mac
 
 Ensure sdl is installed.
 
