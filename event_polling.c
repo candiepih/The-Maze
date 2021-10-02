@@ -1,11 +1,11 @@
 #include "inc/maze.h"
 
 /**
- * loop_and_poll - handles SDL rendering loop and listening to events
+ * game_event_loop - handles SDL rendering loop and listening to events
  * @sdl_g: data structure of sdl_globals
  * Return: nothing
  */
-void loop_and_poll(__attribute__((unused)) sdl_globals *sdl_g)
+void game_event_loop(__attribute__((unused)) sdl_globals *sdl_g)
 {
 	int quit = 0;
 	SDL_Event e;

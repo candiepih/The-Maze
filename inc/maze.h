@@ -17,18 +17,23 @@
  * Other headers
  */
 #include "structures.h"
+#include "macros.h"
 #include <stdio.h>
 
 /**
  * SDL initialization prototypes
  */
-int create_window(char *name, sdl_globals *sdl_g);
+void create_window(char *name, sdl_globals *sdl_g);
 void safe_close_sdl(sdl_globals *sdl_g);
-
+void create_renderer(sdl_globals *sdl_g);
+void print_sdl_error();
 /**
  * SDL events polling prototypes
  */
-void loop_and_poll(sdl_globals *sdl_g);
+void game_event_loop(sdl_globals *sdl_g);
 void poll_events(int *quit, SDL_Event *e);
+void rendering(__attribute__((unused)) sdl_globals *sdl_g);
+void draw_walls(sdl_globals *sdl_g, SDL_Point walls[36][2]);
+void draw_frame(sdl_globals *sdl_g);
 
 #endif

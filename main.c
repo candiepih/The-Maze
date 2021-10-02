@@ -15,10 +15,11 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	if (!create_window("The Maze. Find your way", &sdl_g))
-		exit(EXIT_FAILURE);
+	create_window("The Maze. Find your way", &sdl_g);
+	create_renderer(&sdl_g);
+	rendering(&sdl_g);
 
-	loop_and_poll(&sdl_g);
+	game_event_loop(&sdl_g);
 	safe_close_sdl(&sdl_g);
 
 	return (0);
