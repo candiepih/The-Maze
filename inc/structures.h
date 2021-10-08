@@ -12,7 +12,7 @@
 typedef struct sdl_instance {
 	SDL_Window *window;
 	SDL_Renderer *renderer;
-	const int width;
+    const int width;
 	const int height;
 
 } sdl_instance;

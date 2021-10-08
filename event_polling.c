@@ -13,7 +13,7 @@ void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
 	while (!quit)
 	{
 		poll_events(&quit, &e);
-		rendering(&sdl);
+		rendering(sdl);
 	}
 }
 

@@ -7,11 +7,11 @@
  */
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 {
-	sdl_instance sdl = {NULL, NULL, 1200, 800};
+	sdl_instance sdl = {NULL, NULL, 1400, 900};
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		printf("SDL could not initialize! SDL_Error:%s\n", sdletError());
+		printf("SDL could not initialize! SDL_Error:%s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
 
