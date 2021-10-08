@@ -16,7 +16,7 @@ void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
 		poll_events(&quit, &e, &player);
 		draw_2d_map(sdl);
 		draw_player(sdl, &player);
-		draw_frame(sdl);
+		send_frame(sdl);
 	}
 }
 

@@ -68,7 +68,7 @@ void draw_walls(sdl_instance *sdl, SDL_Point walls[18][2])
  * @sdl: data structure of sdl_instance
  * Return: nothing
  */
-void draw_frame(sdl_instance *sdl)
+void send_frame(sdl_instance *sdl)
 {
 	REND_COLOR_BLACK(sdl->renderer);
 	SDL_RenderPresent(sdl->renderer);
