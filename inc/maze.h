@@ -23,17 +23,17 @@
 /**
  * SDL initialization prototypes
  */
-void create_window(char *name, sdl_globals *sdl_g);
-void safe_close_sdl(sdl_globals *sdl_g);
-void create_renderer(sdl_globals *sdl_g);
+void create_window(char *name, sdl_instance *sdl);
+void safe_close_sdl(sdl_instance *sdl);
+void create_renderer(sdl_instance *sdl);
 void print_sdl_error();
 /**
  * SDL events polling prototypes
  */
-void game_event_loop(sdl_globals *sdl_g);
+void game_event_loop(sdl_instance *sdl);
 void poll_events(int *quit, SDL_Event *e);
-void rendering(__attribute__((unused)) sdl_globals *sdl_g);
-void draw_walls(sdl_globals *sdl_g, SDL_Point walls[36][2]);
-void draw_frame(sdl_globals *sdl_g);
+void rendering(__attribute__((unused)) sdl_instance *sdl);
+void draw_walls(sdl_instance *sdl, SDL_Point walls[36][2]);
+void draw_frame(sdl_instance *sdl);
 
 #endif
