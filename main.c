@@ -7,20 +7,19 @@
  */
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 {
-	sdl_globals sdl_g = {NULL, NULL, 1200, 800};
+	sdl_instance sdl = {NULL, NULL, 1200, 800};
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		printf("SDL could not initialize! SDL_Error:%s\n", SDL_GetError());
+		printf("SDL could not initialize! SDL_Error:%s\n", sdletError());
 		exit(EXIT_FAILURE);
 	}
 
-	create_window("The Maze. Find your way", &sdl_g);
-	create_renderer(&sdl_g);
-	rendering(&sdl_g);
+	create_window("The Maze. Find your way", &sdl);
+	create_renderer(&sdl);
 
-	game_event_loop(&sdl_g);
-	safe_close_sdl(&sdl_g);
+	game_event_loop(&sdl);
+	safe_close_sdl(&sdl);
 
 	return (0);
 }

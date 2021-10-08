@@ -2,10 +2,10 @@
 
 /**
  * game_event_loop - handles SDL rendering loop and listening to events
- * @sdl_g: data structure of sdl_globals
+ * @sdl: data structure of sdl_instance
  * Return: nothing
  */
-void game_event_loop(__attribute__((unused)) sdl_globals *sdl_g)
+void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
 {
 	int quit = 0;
 	SDL_Event e;
@@ -13,6 +13,7 @@ void game_event_loop(__attribute__((unused)) sdl_globals *sdl_g)
 	while (!quit)
 	{
 		poll_events(&quit, &e);
+		rendering(&sdl);
 	}
 }
 

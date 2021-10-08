@@ -12,50 +12,50 @@ void print_sdl_error()
 /**
  * crete_window - creates sdl window instance
  * @name: string pointer to be used to window title
- * @sdl_g: data structure of sdl_globals
+ * @sdl: data structure of sdl_instance
  * Return: (0) if window wasn't created else (1)
  */
-void create_window(char *name, sdl_globals *sdl_g)
+void create_window(char *name, sdl_instance *sdl)
 {
-	sdl_g->window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED,
-	SDL_WINDOWPOS_CENTERED, sdl_g->width, sdl_g->height, 0);
-	if (!sdl_g->window)
+	sdl->window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED,
+	SDL_WINDOWPOS_CENTERED, sdl->width, sdl->height, 0);
+	if (!sdl->window)
 	{
 		print_sdl_error();
-		safe_close_sdl(sdl_g);
+		safe_close_sdl(sdl);
 		exit(EXIT_FAILURE);
 	}
 }
 
 /**
  * create_renderer - creates sdl renderer instance
- * @sdl)g: data structure of sdl_globals
+ * @sdl)g: data structure of sdl_instance
  * Return: nothing
  */
-void create_renderer(sdl_globals *sdl_g)
+void create_renderer(sdl_instance *sdl)
 {
-	sdl_g->renderer = SDL_CreateRenderer(sdl_g->window, 0,
+	sdl->renderer = SDL_CreateRenderer(sdl->window, 0,
 	SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (!sdl_g->renderer)
+	if (!sdl->renderer)
 	{
 		print_sdl_error();
-		safe_close_sdl(sdl_g);
+		safe_close_sdl(sdl);
 		exit(EXIT_FAILURE);
 	}
 }
 
 /**
  * safe_close_sdl - frees and closes sdl
- * @sdl_g: data structure of sdl_globals
+ * @sdl: data structure of sdl_instance
  * Return: nothing
  */
-void safe_close_sdl(sdl_globals *sdl_g)
+void safe_close_sdl(sdl_instance *sdl)
 {
-	if (sdl_g->window)
-		SDL_DestroyWindow(sdl_g->window);
-	if (sdl_g->renderer)
-		SDL_DestroyRenderer(sdl_g->renderer);
-	sdl_g->window = NULL;
-	sdl_g->renderer = NULL;
+	if (sdl->window)
+		SDL_DestroyWindow(sdl->window);
+	if (sdl->renderer)
+		SDL_DestroyRenderer(sdl->renderer);
+	sdl->window = NULL;
+	sdl->renderer = NULL;
 	SDL_Quit();
 }
