@@ -18,7 +18,9 @@
  */
 #include "structures.h"
 #include "macros.h"
+#include "player.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * SDL initialization prototypes
@@ -31,8 +33,8 @@ void print_sdl_error();
  * SDL events polling prototypes
  */
 void game_event_loop(sdl_instance *sdl);
-void poll_events(int *quit, SDL_Event *e);
-void rendering(__attribute__((unused)) sdl_instance *sdl);
+void poll_events(int *quit, SDL_Event *e, player *player);
+void draw_2d_map(__attribute__((unused)) sdl_instance *sdl);
 void draw_walls(sdl_instance *sdl, SDL_Point walls[36][2]);
 void draw_frame(sdl_instance *sdl);
 

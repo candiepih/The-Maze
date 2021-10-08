@@ -9,11 +9,14 @@ void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
 {
 	int quit = 0;
 	SDL_Event e;
+	player player = {{200, 200, 20, 20}, 0};
 
 	while (!quit)
 	{
-		poll_events(&quit, &e);
-		rendering(sdl);
+		poll_events(&quit, &e, &player);
+		draw_2d_map(sdl);
+		draw_player(sdl, &player);
+		draw_frame(sdl);
 	}
 }
 
@@ -26,7 +29,7 @@ void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
  * 
  * Return: Nothing
  */
-void poll_events(int *quit, SDL_Event *e)
+void poll_events(int *quit, SDL_Event *e, player *player)
 {
 	while (SDL_PollEvent(e) != 0)
 	{
@@ -36,6 +39,18 @@ void poll_events(int *quit, SDL_Event *e)
 		{
 		case SDLK_ESCAPE:
 			*quit = 1;
+			break;
+		case SDLK_w:
+			player->locale.y -= PLAYER_VEL;
+			break;
+		case SDLK_s:
+			player->locale.y += PLAYER_VEL;
+			break;
+		case SDLK_a:
+			player->locale.x -=PLAYER_VEL;
+			break;
+		case SDLK_d:
+			player->locale.x += PLAYER_VEL;
 			break;
 		default:
 			break;

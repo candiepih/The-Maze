@@ -1,7 +1,7 @@
 #include "inc/maze.h"
 
 /**
- * rendering - creates 2d points to the screen
+ * draw_2d_map - creates 2d points to the screen
  * @sdl: data structure of sdl_instance
  * 
  * Description: To be modified later to better fit
@@ -9,9 +9,12 @@
  * 
  * Return: nothing
  */
-void rendering(__attribute__((unused)) sdl_instance *sdl)
+void draw_2d_map(__attribute__((unused)) sdl_instance *sdl)
 {
-    	// SDL_Point walls[18][2];
+    	int i, j;
+    	int rect_size = 64;
+    	int offset = 100;
+	//2D map to be rendered
     	int map[9][9] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 1, 0, 1},
@@ -23,40 +26,23 @@ void rendering(__attribute__((unused)) sdl_instance *sdl)
 		{1, 0, 1, 0, 0, 0, 0, 0, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1},
     	};
-    	int i, j;
-    	int rect_size = 64;
-    	SDL_Rect block = {0, 0, rect_size, rect_size};
-    	int offset = 100;
     	int rows = sizeof(map) / sizeof(map[0]);
     	int columns = sizeof(map[0]) / sizeof(map[0][0]);
+    	SDL_Rect block = {0, 0, rect_size, rect_size};
 
     	for (i = 0; i < rows; i++)
     	{
 		for (j = 0; j < columns; j++)
 		{
-		    	// walls[i][0].x = map[i][0];
-
-		    	// walls[i][0].y = map[i][1];
-		    	// walls[i][1].x = map[i][2];
-		    	// walls[i][1].y = map[i][3];
 		    	if (map[i][j] == 0)
 				continue;
-				// Calculate the x and y offset of the square block
+			// Calculate the x and y offset of the square block
 		    	block.x = (j << 6) + offset;
 		    	block.y = (i << 6) + offset;
 		    	REND_COLOR_WHITE(sdl->renderer);
 		    	SDL_RenderFillRect(sdl->renderer, &block);
 		}
     	}
-    	// for (i = 0; i < 9; i++)
-    	// {
-    	//     for (j = 0; j < 2; j++)
-    	//     {
-    	//         printf("x: %d, y: %d \n", walls[i][j].x, walls[i][j].y);
-    	//     }
-    	// }
-    	// draw_walls(sdl, walls);
-    	draw_frame(sdl);
 }
 
 /**
