@@ -7,7 +7,7 @@
  */
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 {
-	sdl_instance sdl = {NULL, NULL, 1400, 900};
+	sdl_instance sdl = {NULL, NULL};
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -15,7 +15,7 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	create_window("The Maze. Find your way", &sdl);
+	create_window(WINDOW_TITLE, &sdl);
 	create_renderer(&sdl);
 
 	game_event_loop(&sdl);

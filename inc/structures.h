@@ -12,23 +12,16 @@
 typedef struct sdl_instance {
 	SDL_Window *window;
 	SDL_Renderer *renderer;
-    const int width;
-	const int height;
-
 } sdl_instance;
 
 /**
  * struct player - Data structure containing the player information
- * @width: width size of the player
- * @height: height size of the player
- * @pos_x: position of the player on the x axis
- * @pos_y: position of the player on the y axis
+ * @locale: Contains information of player displayed as a SDL rectangle
+ * @degrees: Player rotation
  */
 typedef struct player {
-    int width;
-    int height;
-    int pos_x;
-    int pos_y;
+    SDL_Rect locale;
+    int degrees;
 } player;
 
 #endif
