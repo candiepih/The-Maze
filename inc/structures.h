@@ -21,7 +21,7 @@ typedef struct sdl_instance {
  */
 typedef struct player {
     SDL_Rect locale;
-    int degrees;
+    float rotation_angle;
 } player;
 
 #endif

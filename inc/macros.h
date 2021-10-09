@@ -13,5 +13,8 @@
 #define SCREEN_WIDTH 1400
 #define SCREEN_HEIGHT 900
 #define WINDOW_TITLE "The Maze. Find your way"
+#define FOV 60
+#define PI 3.14159265358979323846
+#define RADIAN(x) (x * (PI / 180.0))
 
 #endif

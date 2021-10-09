@@ -21,6 +21,7 @@
 #include "player.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 /**
  * SDL initialization prototypes
@@ -41,5 +42,11 @@ void poll_events(int *quit, SDL_Event *e, player *player);
 void draw_2d_map(__attribute__((unused)) sdl_instance *sdl);
 void draw_walls(sdl_instance *sdl, SDL_Point walls[36][2]);
 void send_frame(sdl_instance *sdl);
+
+/**
+ * RayCasting prototypes
+ */
+void raycast(sdl_instance *sdl, player *player);
+SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg, float ray_size);
 
 #endif
