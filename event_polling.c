@@ -16,7 +16,8 @@ void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
 		poll_events(&quit, &e, &player);
 		draw_2d_map(sdl);
 		draw_player(sdl, &player);
-		draw_frame(sdl);
+		raycast(sdl, &player);
+		send_frame(sdl);
 	}
 }
 
@@ -48,6 +49,8 @@ void poll_events(int *quit, SDL_Event *e, player *player)
 			break;
 		case SDLK_a:
 			player->locale.x -=PLAYER_VEL;
+			// player->rotation_angle = 0.03;
+			// rotate_player(player);
 			break;
 		case SDLK_d:
 			player->locale.x += PLAYER_VEL;
