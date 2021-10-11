@@ -48,6 +48,9 @@ SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg, fl
 {
 	SDL_Point new_point = {0, 0};
 
+	// For information of how this works Visit
+	// https://danceswithcode.net/engineeringnotes/rotations_in_2d/rotations_in_2d.html
+	// Offset our point on y axis with the @ray_size which is sort of the length of the ray
 	new_point.x = ((point->x - cx) * cos(deg) - (((point->y - ray_size) - cy) * sin(deg))) + cx;
 	new_point.y = ((point->x - cx) * sin(deg) + (((point->y - ray_size) - cy) * cos(deg))) + cy;
 
@@ -64,14 +67,15 @@ void raycast(sdl_instance *sdl, player *player)
 {
 	SDL_Point center;
 	SDL_Point point;
-	float deg = RADIAN(FOV/2);
-	float i;
+	double deg = RADIAN(FOV/2);
+	double i;
+	double rays_magnitude = 0.05;
 
-	// totalRays = FOV / RADIAN(1);
 	center.x = player->locale.x + (player->locale.w / 2);
 	center.y = player->locale.y + (player->locale.h / 2);
-	REND_COLOR_WHITE(sdl->renderer);
-	for (i = (deg * -1); i <= deg; (i += 0.05))
+	REND_COLOR_GREEN(sdl->renderer);
+	// Drawing rays from an angle of -30 degs to 30 degs
+	for (i = (deg * -1); i <= deg; (i += rays_magnitude))
 	{
 		point = rotate_point(&center, center.x, center.y, i, 128);
 		SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);

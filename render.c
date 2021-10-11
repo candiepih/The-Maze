@@ -9,11 +9,10 @@
  * 
  * Return: nothing
  */
-void draw_2d_map(__attribute__((unused)) sdl_instance *sdl)
+void draw_2d_map(sdl_instance *sdl)
 {
     	int i, j;
     	int rect_size = 64;
-    	int offset = 100;
 	//2D map to be rendered
     	int map[9][9] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -37,8 +36,8 @@ void draw_2d_map(__attribute__((unused)) sdl_instance *sdl)
 		    	if (map[i][j] == 0)
 				continue;
 			// Calculate the x and y offset of the square block
-		    	block.x = (j << 6) + offset;
-		    	block.y = (i << 6) + offset;
+		    	block.x = (j << 6) + SCREEN_XY_MARGIN;
+		    	block.y = (i << 6) + SCREEN_XY_MARGIN;
 		    	REND_COLOR_WHITE(sdl->renderer);
 		    	SDL_RenderFillRect(sdl->renderer, &block);
 		}

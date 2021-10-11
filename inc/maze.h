@@ -39,7 +39,7 @@ void poll_events(int *quit, SDL_Event *e, player *player);
 /**
  * SDL rendering prototypes
  */
-void draw_2d_map(__attribute__((unused)) sdl_instance *sdl);
+void draw_2d_map(sdl_instance *sdl);
 void draw_walls(sdl_instance *sdl, SDL_Point walls[36][2]);
 void send_frame(sdl_instance *sdl);
 
