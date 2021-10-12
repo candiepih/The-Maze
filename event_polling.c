@@ -5,18 +5,20 @@
  * @sdl: data structure of sdl_instance
  * Return: nothing
  */
-void game_event_loop(__attribute__((unused)) sdl_instance *sdl)
+void game_event_loop(sdl_instance *sdl)
 {
 	int quit = 0;
 	SDL_Event e;
 	player player = {{200, 200, 20, 20}, 0};
+	map_t map;
 
+	map = populate_map();
 	while (!quit)
 	{
 		poll_events(&quit, &e, &player);
-		draw_2d_map(sdl);
+		draw_2d_map(sdl, map);
 		draw_player(sdl, &player);
-		raycast(sdl, &player);
+		raycast(sdl, &player, map);
 		send_frame(sdl);
 	}
 }

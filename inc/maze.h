@@ -39,14 +39,16 @@ void poll_events(int *quit, SDL_Event *e, player *player);
 /**
  * SDL rendering prototypes
  */
-void draw_2d_map(sdl_instance *sdl);
+void draw_2d_map(sdl_instance *sdl, map_t map);
 void draw_walls(sdl_instance *sdl, SDL_Point walls[36][2]);
 void send_frame(sdl_instance *sdl);
+map_t populate_map();
 
 /**
  * RayCasting prototypes
  */
-void raycast(sdl_instance *sdl, player *player);
+void raycast(sdl_instance *sdl, player *player,  map_t map);
 SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg, float ray_size);
+SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, __attribute__((unused)) map_t map);
 
 #endif

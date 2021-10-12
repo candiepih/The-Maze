@@ -1,20 +1,15 @@
 #include "inc/maze.h"
 
 /**
- * draw_2d_map - creates 2d points to the screen
- * @sdl: data structure of sdl_instance
+ * create_map - populates the map with values
  * 
- * Description: To be modified later to better fit
- * dynamic points
- * 
- * Return: nothing
+ * Return: map_t datastructure that holds an array of integers and
+ * rows and columns of the array
  */
-void draw_2d_map(sdl_instance *sdl)
+map_t populate_map()
 {
-    	int i, j;
-    	int rect_size = 64;
-	//2D map to be rendered
-    	int map[9][9] = {
+	map_t map = {
+	    {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 1, 0, 1},
 		{1, 0, 0, 0, 0, 0, 1, 0, 1},
@@ -24,16 +19,35 @@ void draw_2d_map(sdl_instance *sdl)
 		{1, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 0, 1, 0, 0, 0, 0, 0, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1},
-    	};
-    	int rows = sizeof(map) / sizeof(map[0]);
-    	int columns = sizeof(map[0]) / sizeof(map[0][0]);
-    	SDL_Rect block = {0, 0, rect_size, rect_size};
+	    },
+	    0, 0
+	};
 
-    	for (i = 0; i < rows; i++)
+	map.rows = sizeof(map.arr) / sizeof(map.arr[0]);
+    	map.columns = sizeof(map.arr[0]) / sizeof(map.arr[0][0]);
+
+	return (map);
+}
+
+/**
+ * draw_2d_map - creates 2d points to the screen
+ * @sdl: data structure of sdl_instance
+ * 
+ * Description: To be modified later to better fit
+ * dynamic points
+ * 
+ * Return: nothing
+ */
+void draw_2d_map(sdl_instance *sdl, map_t map)
+{
+    	int i, j;
+    	SDL_Rect block = {0, 0, GRID_SIZE, GRID_SIZE};
+
+    	for (i = 0; i < map.rows; i++)
     	{
-		for (j = 0; j < columns; j++)
+		for (j = 0; j < map.columns; j++)
 		{
-		    	if (map[i][j] == 0)
+		    	if (map.arr[i][j] == 0)
 				continue;
 			// Calculate the x and y offset of the square block
 		    	block.x = (j << 6) + SCREEN_XY_MARGIN;
