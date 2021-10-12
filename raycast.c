@@ -58,6 +58,14 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
 	}
 }
 
+/**
+ * check_ray_intersection - checks whether the ray intersects with walls
+ * @center: pointer to point from center of player
+ * @ray_rotation_angle: rotation angle of the point
+ * @map: Datastructure of map_t holding map information
+ * 
+ * Return: SDL Point containing x and y coordinates of the ray
+ */
 SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, __attribute__((unused)) map_t map)
 {
 	SDL_Point point = {center->x, center->y};
