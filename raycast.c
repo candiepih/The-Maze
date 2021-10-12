@@ -106,7 +106,7 @@ SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, 
 				point.y = center->y;
 				point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), hy);
 				// printf("I am intersecting %d\n", k);
-				break;
+				// break;
 			}
 		}
 	}
