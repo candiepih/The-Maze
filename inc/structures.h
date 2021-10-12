@@ -36,4 +36,14 @@ typedef struct map {
 	int columns;
 } map_t;
 
+/**
+ * struct line - Data structure that represents a line
+ * @p1: start of line. Contains it's x and y coordinates
+ * @p2: end of line. Contains it's x and y coordinates
+ */
+typedef struct line {
+	SDL_Point p1;
+	SDL_Point p2;
+} line;
+
 #endif
