@@ -24,4 +24,16 @@ typedef struct player {
     float rotation_angle;
 } player;
 
+/**
+ * struct map - Data structure holding map information
+ * @arr: multidimension array of integers
+ * @rows: number of rows in @arr array
+ * @columns: number of columns in @arr array
+ */
+typedef struct map {
+	int arr[9][9];
+	int rows;
+	int columns;
+} map_t;
+
 #endif
