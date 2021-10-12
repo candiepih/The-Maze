@@ -35,7 +35,7 @@ void create_window(char *name, sdl_instance *sdl)
 void create_renderer(sdl_instance *sdl)
 {
 	sdl->renderer = SDL_CreateRenderer(sdl->window, -1,
-	SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	if (!sdl->renderer)
 	{
 		print_sdl_error();

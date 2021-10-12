@@ -66,13 +66,15 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
  * 
  * Return: SDL Point containing x and y coordinates of the ray
  */
-SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, __attribute__((unused)) map_t map)
+SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, map_t map)
 {
 	SDL_Point point = {center->x, center->y};
 	double ray_length = 2048;
 	int i, j;
 	SDL_Rect wall = {0, 0, 64, 64};
 	line line1 = {{0,0}, {0,0}};
+	SDL_bool is_intersecting;
+	double op, adj, hy;
 	// SDL_Point intersection;
 
 	point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), ray_length);
@@ -84,22 +86,26 @@ SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, 
 				continue;
 			wall.x = (j << 6) + SCREEN_XY_MARGIN;
 			wall.y = (i << 6) + SCREEN_XY_MARGIN;
+			// point start of line
 			line1.p1.x = center->x;
 			line1.p1.y = center->y;
+			// point end of line
 			line1.p2.x = point.x;
 			line1.p2.y = point.y;
-			SDL_bool k = SDL_IntersectRectAndLine(&wall,
-							      &line1.p1.x, &line1.p1.y, &line1.p2.x, &line1.p2.y);
-			if (k == SDL_TRUE)
+			// Check line line intersecting with either sides of cube
+			is_intersecting = SDL_IntersectRectAndLine(&wall,
+			&line1.p1.x, &line1.p1.y, &line1.p2.x, &line1.p2.y);
+
+			if (is_intersecting == SDL_TRUE)
 			{
-				double adj = line1.p1.x - center->x;
-				double op = line1.p1.y - center->y;
-				double hy = sqrt((pow(op, 2.0) + pow(adj, 2.0)));
+				adj = line1.p1.x - center->x;
+				op = line1.p1.y - center->y;
+				hy = sqrt((pow(op, 2.0) + pow(adj, 2.0)));
 
 				point.x = center->x;
 				point.y = center->y;
 				point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), hy);
-				printf("I am intersecting %d\n", k);
+				// printf("I am intersecting %d\n", k);
 				break;
 			}
 		}
