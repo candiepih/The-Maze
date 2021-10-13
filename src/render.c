@@ -1,4 +1,4 @@
-#include "inc/maze.h"
+#include "../inc/maze.h"
 
 /**
  * create_map - populates the map with values
@@ -55,24 +55,6 @@ void draw_2d_map(sdl_instance *sdl, map_t map)
 		    	REND_COLOR_WHITE(sdl->renderer);
 		    	SDL_RenderFillRect(sdl->renderer, &block);
 		}
-    	}
-}
-
-/**
- * draw_walls - draws lines to the SDL renderer
- * @sdl: data structure of sdl_instance
- * @walls: multidimensional array of SDL points
- * Return: nothing
- */
-void draw_walls(sdl_instance *sdl, SDL_Point walls[18][2])
-{
-    	REND_COLOR_WHITE(sdl->renderer);
-    	int wallsCount = 18;
-    	int i;
-
-    	for (i = 0; i < wallsCount; i++)
-    	{
-		SDL_RenderDrawLine(sdl->renderer, walls[i][0].x, walls[i][0].y, walls[i][1].x, walls[i][1].y);
     	}
 }
 
