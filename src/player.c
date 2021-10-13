@@ -1,4 +1,4 @@
-#include "inc/maze.h"
+#include "../inc/maze.h"
 
 /**
  * draw_player - draws the player as a rectangle to the screen

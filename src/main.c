@@ -1,4 +1,4 @@
-#include "inc/maze.h"
+#include "../inc/maze.h"
 
 /**
  * main - Entry point
