@@ -1,4 +1,3 @@
-
 #include "inc/maze.h"
 
 /**
@@ -36,14 +35,15 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
 	// SDL_Point center;
 	SDL_Point point, center;
 	double i, deg = FOV / 2.0;
-	// SDL_Rect centerOfProjectionPlane = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
-	// double distanceToProjectionPlane = centerOfProjectionPlane.w / tan(RADIAN(deg));
 
 	// Center is the player's center position coordinates
 	center.x = player->locale.x + (player->locale.w / 2);
 	center.y = player->locale.y + (player->locale.h / 2);
 	REND_COLOR_GREEN(sdl->renderer);
-	double angleBtwnRays = ((FOV * 1.0) / SCREEN_WIDTH);
+	// We divide the width by 2 for the raycasted map to ocupy half width of screen
+	double angleBtwnRays = ((FOV * 1.0) / (SCREEN_WIDTH / 2));
+	double normalized_ray_length = 0;
+	int screen_column_index = 0;
 
 	// Drawing rays from an angle of -30 degs to 30 degs(Converted to radians) from players
 	// viewing direction
@@ -54,7 +54,15 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
 	{
 		// Convert deg to radian and rotate point by deg from center
 		point = check_ray_intersections(&center, i, map);
+		// Draw rays on 2D map
 		SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);
+		// We get correct distance from wall by subtracting y of resulting point
+		// with center. Also reduces fish eye effect. This can also be calculated
+		// with the length_of_ray / cos(30)
+		normalized_ray_length = point.y - center.y;
+		draw_3D_walls(sdl, normalized_ray_length, screen_column_index);
+		screen_column_index++;
+		// draw_walls(sdl, 128, &point);
 	}
 }
 
@@ -106,7 +114,6 @@ SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, 
 				point.y = center->y;
 				point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), hy);
 				// printf("I am intersecting %d\n", k);
-				// break;
 			}
 		}
 	}
@@ -198,3 +205,25 @@ int lines_intersect(line *line1, line *line2, SDL_Point *hitp)
     return (0);
 }
 
+/**
+ * draw_walls - draws lines to the SDL renderer
+ * @sdl: data structure of sdl_instance
+ * @map: map_t datastructure containing map data(array of integers)
+ * Return: nothing
+ */
+void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index)
+{
+	double offset_x = SCREEN_WIDTH / 2.0;
+	double lineHeight = (SCREEN_HEIGHT / (ray_length * 1.0)) * 32;
+	double drawStart = (SCREEN_HEIGHT - lineHeight) / 2.0;
+	double x = offset_x + ray_index;
+	double drawEnd = (SCREEN_HEIGHT + lineHeight) / 2.0;
+
+	if (drawStart < 0)
+		drawStart = 0;
+	if (drawEnd >= SCREEN_HEIGHT)
+		drawEnd = SCREEN_HEIGHT - 1.0;
+
+	REND_COLOR_GREEN(sdl->renderer);
+	SDL_RenderDrawLine(sdl->renderer, x, drawStart, x, drawEnd);
+}
