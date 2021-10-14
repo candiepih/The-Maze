@@ -13,22 +13,20 @@ void draw_player(sdl_instance *sdl, player *player)
 }
 
 /**
- * rotate_player - rotates the player along the 2d world
- * @player: data structure of player
+ * rotate_player - listens to mouse events and rotates the player
+ * @player: datastructure of player, contains player information
+ * @mouse: data structure of SDL_Point that stores mouse x, y coordinates
  * Return: nothing
  */
-void rotate_player(player *player)
+void rotate_player(player *player, SDL_Point *mouse)
 {
-	int x1, y1;
+	int initial_x_pos = mouse->x;
+	int delta = 0;
 
-	//First transform players x & y coordinates to x1 y1
-	x1 = (player->locale.x * cos(player->rotation_angle)) -
-	(player->locale.y * sin(player->rotation_angle));
-	y1 = (player->locale.x * sin(player->rotation_angle)) +
-	(player->locale.y * cos(player->rotation_angle));
-
-	printf("Before x1: %d y1: %d\n", player->locale.x, player->locale.y);
-	player->locale.x = x1;
-	// player->locale.y = y1;
-	printf("After x1: %d y1: %d\n", x1, y1);
+	SDL_GetMouseState(&mouse->x, &mouse->y);
+	delta = mouse->x - initial_x_pos;
+	if (delta < 0)
+		player->view_angle += (ROTATION_MAGNITUDE * -1);
+	else
+		player->view_angle += ROTATION_MAGNITUDE;
 }
