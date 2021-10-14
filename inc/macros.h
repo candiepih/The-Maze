@@ -18,5 +18,6 @@
 #define WINDOW_TITLE "The Maze. Find your way"
 #define FOV 60
 #define RADIAN(x) (x * (M_PI / 180.0))
+#define ROTATION_MAGNITUDE 2
 
 #endif

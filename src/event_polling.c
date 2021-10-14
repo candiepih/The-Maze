@@ -11,11 +11,12 @@ void game_event_loop(sdl_instance *sdl)
 	SDL_Event e;
 	player player = {{200, 200, 20, 20}, FOV};
 	map_t map;
+	SDL_Point mouse = {0, 0};
 
 	map = populate_map();
 	while (!quit)
 	{
-		poll_events(&quit, &e, &player);
+		poll_events(&quit, &e, &player, &mouse);
 		draw_2d_map(sdl, map);
 		draw_player(sdl, &player);
 		raycast(sdl, &player, map);
@@ -32,12 +33,15 @@ void game_event_loop(sdl_instance *sdl)
  * 
  * Return: Nothing
  */
-void poll_events(int *quit, SDL_Event *e, player *player)
+void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)
 {
 	while (SDL_PollEvent(e) != 0)
 	{
 		if (e->type == SDL_QUIT)
 			*quit = 1;
+		if (e->type == SDL_MOUSEMOTION)
+			rotate_player(player, mouse);
+
 		switch (e->key.keysym.sym)
 		{
 		case SDLK_ESCAPE:
@@ -50,13 +54,10 @@ void poll_events(int *quit, SDL_Event *e, player *player)
 			player->locale.y += PLAYER_VEL;
 			break;
 		case SDLK_a:
-			// player->locale.x -=PLAYER_VEL;
-			// player->rotation_angle = 0.03;
-			rotate_player(player, -2);
+			player->locale.x -=PLAYER_VEL;
 			break;
 		case SDLK_d:
-			// player->locale.x += PLAYER_VEL;
-			rotate_player(player, 2);
+			player->locale.x += PLAYER_VEL;
 			break;
 		default:
 			break;

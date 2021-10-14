@@ -34,7 +34,7 @@ void print_sdl_error();
  * SDL events polling prototypes
  */
 void game_event_loop(sdl_instance *sdl);
-void poll_events(int *quit, SDL_Event *e, player *player);
+void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse);
 
 /**
  * SDL rendering prototypes

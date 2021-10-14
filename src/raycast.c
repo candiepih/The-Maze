@@ -71,10 +71,12 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
  * @center: pointer to point from center of player
  * @ray_rotation_angle: rotation angle of the point
  * @map: Datastructure of map_t holding map information
+ * @ray_length: pointer to double to be used to store the resulting length of ray
  * 
  * Return: SDL Point containing x and y coordinates of the ray
  */
-SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, map_t map, double *ray_len)
+SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle,
+map_t map, double *ray_len)
 {
 	SDL_Point point = {center->x, center->y};
 	double ray_length = 2048;
@@ -123,7 +125,15 @@ SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, 
 }
 
 /**
- * remove_fish_eye_effect - 
+ * remove_fish_eye_effect - removes the effect which makes lines look oval like
+ * @player: data structure of player that stores player information
+ * @ray_length: the length of ray from center of player to the point it hit the wall
+ * @ray_view_angle: The current angle of the ray relative to the view angle
+ * 
+ * Description: Also known as Fishbowl effect which happens because ray-casting
+ * implementation mixes polar coordinate and Cartesian coordinate together.
+ * 
+ * Return: The correct length of ray after removing the viewing distortion
  */
 double remove_fish_eye_effect(player *player, double ray_length, double ray_view_angle)
 {
