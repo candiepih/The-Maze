@@ -17,7 +17,6 @@
 #define GRID_SIZE 64
 #define WINDOW_TITLE "The Maze. Find your way"
 #define FOV 60
-#define PI 3.14159265358979323846
-#define RADIAN(x) (x * (PI / 180.0))
+#define RADIAN(x) (x * (M_PI / 180.0))
 
 #endif

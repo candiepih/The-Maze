@@ -9,7 +9,7 @@ void game_event_loop(sdl_instance *sdl)
 {
 	int quit = 0;
 	SDL_Event e;
-	player player = {{200, 200, 20, 20}, 0};
+	player player = {{200, 200, 20, 20}, FOV};
 	map_t map;
 
 	map = populate_map();
@@ -50,12 +50,13 @@ void poll_events(int *quit, SDL_Event *e, player *player)
 			player->locale.y += PLAYER_VEL;
 			break;
 		case SDLK_a:
-			player->locale.x -=PLAYER_VEL;
+			// player->locale.x -=PLAYER_VEL;
 			// player->rotation_angle = 0.03;
-			// rotate_player(player);
+			rotate_player(player, -2);
 			break;
 		case SDLK_d:
-			player->locale.x += PLAYER_VEL;
+			// player->locale.x += PLAYER_VEL;
+			rotate_player(player, 2);
 			break;
 		default:
 			break;

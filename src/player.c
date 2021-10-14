@@ -17,18 +17,19 @@ void draw_player(sdl_instance *sdl, player *player)
  * @player: data structure of player
  * Return: nothing
  */
-void rotate_player(player *player)
+void rotate_player(player *player, int rotation_angle)
 {
-	int x1, y1;
+	player->view_angle += rotation_angle;
+	// int x1, y1;
 
-	//First transform players x & y coordinates to x1 y1
-	x1 = (player->locale.x * cos(player->rotation_angle)) -
-	(player->locale.y * sin(player->rotation_angle));
-	y1 = (player->locale.x * sin(player->rotation_angle)) +
-	(player->locale.y * cos(player->rotation_angle));
+	// //First transform players x & y coordinates to x1 y1
+	// x1 = (player->locale.x * cos(player->view_angle)) -
+	// (player->locale.y * sin(player->view_angle));
+	// y1 = (player->locale.x * sin(player->view_angle)) +
+	// (player->locale.y * cos(player->view_angle));
 
-	printf("Before x1: %d y1: %d\n", player->locale.x, player->locale.y);
-	player->locale.x = x1;
-	// player->locale.y = y1;
-	printf("After x1: %d y1: %d\n", x1, y1);
+	// printf("Before x1: %d y1: %d\n", player->locale.x, player->locale.y);
+	// player->locale.x = x1;
+	// // player->locale.y = y1;
+	// printf("After x1: %d y1: %d\n", x1, y1);
 }

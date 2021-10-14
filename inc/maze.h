@@ -48,8 +48,8 @@ map_t populate_map();
  */
 void raycast(sdl_instance *sdl, player *player,  map_t map);
 SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg, float ray_size);
-SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, map_t map);
-int lines_intersect(line *line1, line *line2, SDL_Point *hitp);
+SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, map_t map, double *ray_len);
 void draw_3D_walls(sdl_instance *sdl, double ray_length, int index);
+double remove_fish_eye_effect(player *player, double ray_length, double ray_view_angle);
 
 #endif
