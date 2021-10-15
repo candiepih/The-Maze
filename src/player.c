@@ -26,7 +26,23 @@ void rotate_player(player *player, SDL_Point *mouse)
 	SDL_GetMouseState(&mouse->x, &mouse->y);
 	delta = mouse->x - initial_x_pos;
 	if (delta < 0)
-		player->view_angle += (ROTATION_MAGNITUDE * -1);
+		player->view_angle -= ROTATION_MAGNITUDE;
 	else
 		player->view_angle += ROTATION_MAGNITUDE;
+}
+
+/**
+ * move_player - Moving the player according to the direction facing
+ * @player: data structure holding player information
+ * Return: SDL_Point containing displacement distance of movement
+ */
+SDL_Point move_player(player *player)
+{
+	SDL_Point displacement = {0, 0};
+	double deg = player->view_angle;
+
+	displacement.x = cos(RADIAN((90 - (deg / 2)))) * MOVE_SPEED;
+	displacement.y = sin(RADIAN((90 - (deg / 2)))) * MOVE_SPEED;
+
+	return (displacement);
 }
