@@ -3,5 +3,6 @@
 
 void draw_player(sdl_instance *sdl, player *player);
 void rotate_player(player *player, SDL_Point *mouse);
+SDL_Point move_player(player *player);
 
 #endif

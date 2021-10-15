@@ -79,15 +79,14 @@ SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle,
 map_t map, double *ray_len)
 {
 	SDL_Point point = {center->x, center->y};
-	double ray_length = 2048;
 	int i, j;
-	SDL_Rect wall = {0, 0, 64, 64};
+	SDL_Rect wall = {0, 0, GRID_SIZE, GRID_SIZE};
 	line line = {{0,0}, {0,0}};
-	SDL_bool is_intersecting;
+	SDL_bool is_intersecting = SDL_FALSE;
 	double op, adj, hy;
 	// SDL_Point intersection;
 
-	point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), ray_length);
+	point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), MAX_DRAW_DISTANCE);
 	for (i = 0; i < map.rows; i++)
 	{
 		for (j = 0; j < map.columns; j++)

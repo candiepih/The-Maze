@@ -35,6 +35,9 @@ void game_event_loop(sdl_instance *sdl)
  */
 void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)
 {
+	SDL_Point displacement = {0, 0};
+
+	displacement = move_player(player);
 	while (SDL_PollEvent(e) != 0)
 	{
 		if (e->type == SDL_QUIT)
@@ -48,16 +51,22 @@ void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)
 			*quit = 1;
 			break;
 		case SDLK_w:
-			player->locale.y -= PLAYER_VEL;
+			// player->locale.y -= PLAYER_VEL;
+			player->locale.x += displacement.x;
+			player->locale.y -= displacement.y;
 			break;
 		case SDLK_s:
-			player->locale.y += PLAYER_VEL;
+			// player->locale.y += PLAYER_VEL;
+			player->locale.x -= displacement.x;
+			player->locale.y += displacement.y;
 			break;
 		case SDLK_a:
-			player->locale.x -=PLAYER_VEL;
+			// player->locale.x -= MOVE_SPEED;
+			player->view_angle -= ROTATION_MAGNITUDE;
 			break;
 		case SDLK_d:
-			player->locale.x += PLAYER_VEL;
+			player->view_angle += ROTATION_MAGNITUDE;
+			// player->locale.x += MOVE_SPEED;
 			break;
 		default:
 			break;
