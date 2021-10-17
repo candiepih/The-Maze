@@ -46,3 +46,88 @@ SDL_Point move_player(player *player)
 
 	return (displacement);
 }
+
+/**
+ * player_collision_detection - detects collision of player with walls
+ * @player: pointer to data structure of player holding player information
+ * @map: pointer to 2 dimension grid
+ * Return: nothing
+ */
+void player_collision_detection(player *player, map_t *map)
+{
+	SDL_Rect wall = {0, 0, GRID_SIZE, GRID_SIZE};
+	int i, j;
+	int border = 5;
+	int dimensions = player->locale.w + border;
+	SDL_Rect bounding_box = {player->locale.x - (border / 2),
+				player->locale.y - (border / 2),
+				dimensions, dimensions};
+
+	for (i = 0; i < map->rows; i++)
+	{
+		for (j = 0; j < map->columns; j++)
+		{
+			if (map->arr[i][j] == 0)
+				continue;
+			wall.x = (j << 6) + SCREEN_XY_MARGIN;
+			wall.y = (i << 6) + SCREEN_XY_MARGIN;
+			if (SDL_HasIntersection(&bounding_box, &wall))
+				slide_on_wall(player);
+		}
+	}
+}
+
+/**
+ * slide_on_wall - slides the player from the wall on collision
+ * @player: pointer to data structure of player holding player information
+ * Return: nothing
+ */
+void slide_on_wall(player *player)
+{
+	int angle;
+
+	quadrant_of_angle(player->view_angle / 2, &angle);
+
+	if (angle > 300 || angle < 60)
+	{
+		// player looking up
+		player->locale.x++;
+		player->locale.y++;
+	}
+	else if (angle > 60 && angle < 170)
+	{
+		// player looking right
+		player->locale.x--;
+		player->locale.y--;
+	}
+	else if (angle > 170 && angle < 235)
+	{
+		// player looking bottom
+		player->locale.x++;
+		player->locale.y--;
+	}
+	else if (angle > 235 && angle < 300)
+	{
+		// player looking left
+		player->locale.x++;
+		player->locale.y++;
+	}
+}
+/**
+ * quadrant_of_angle - calculates the quadrant in which a certain angle belongs
+ * @angle: The angle to check for it's quadrant
+ * @resulting_angle: The angle transform to range between 0-360
+ * Return: quadrant in which angle belongs to. 0 is first quadrant and 3 last
+ */
+int quadrant_of_angle(int angle, int *resulting_angle)
+{
+	int quadrant;
+
+	angle %= 360; // 0..360 if angle is positive, -360..0 if negative
+	if (angle < 0)
+		angle += 360; // Back to 0..360
+	quadrant = (angle/90) % (4 + 1);
+	*resulting_angle = angle;
+
+	return (quadrant);
+}

@@ -19,6 +19,7 @@ void game_event_loop(sdl_instance *sdl)
 		poll_events(&quit, &e, &player, &mouse);
 		draw_2d_map(sdl, map);
 		draw_player(sdl, &player);
+		player_collision_detection(&player, &map);
 		raycast(sdl, &player, map);
 		send_frame(sdl);
 	}
@@ -28,7 +29,9 @@ void game_event_loop(sdl_instance *sdl)
  * poll_events - listens and handles SDL events
  * @quit: pointer to integer that holds status of SDL loop.
  * Default value (0) and (1) to break it
- * @e: pointer ot SDL_Event data structure that holds information
+ * @e: pointer to SDL_Event data structure that holds information
+ * @player: pointer to data structure of player holds players information
+ * @mouse: Pointer to SDL_Point holding mouse x, y positions
  * concerning events
  * 
  * Return: Nothing

@@ -71,7 +71,7 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
  * @center: pointer to point from center of player
  * @ray_rotation_angle: rotation angle of the point
  * @map: Datastructure of map_t holding map information
- * @ray_length: pointer to double to be used to store the resulting length of ray
+ * @ray_len: pointer to double to be used to store the resulting length of ray
  * 
  * Return: SDL Point containing x and y coordinates of the ray
  */
