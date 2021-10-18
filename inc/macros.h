@@ -8,6 +8,8 @@
 #define REND_COLOR_BLACK(x) SDL_SetRenderDrawColor(x, 0, 0, 0, 255);
 #define REND_COLOR_YELLOW(x) SDL_SetRenderDrawColor(x, 255, 255, 0, 255);
 #define REND_COLOR_GREEN(x) SDL_SetRenderDrawColor(x, 0, 255, 0, 255);
+#define REND_COLOR_BLUE(x) SDL_SetRenderDrawColor(x, 0, 0, 255, 255);
+#define REND_COLOR(x, r, g, b, a) SDL_SetRenderDrawColor(x, r, g, b, a);
 #define TRUE 1;
 #define FALSE 0;
 #define SCREEN_WIDTH 1400

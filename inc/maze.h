@@ -16,12 +16,12 @@
 /**
  * Other headers
  */
-#include "structures.h"
-#include "macros.h"
-#include "player.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "structures.h"
+#include "macros.h"
+#include "player.h"
 
 /**
  * SDL initialization prototypes
@@ -51,5 +51,8 @@ SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg, fl
 SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle, map_t map, double *ray_len);
 void draw_3D_walls(sdl_instance *sdl, double ray_length, int index);
 double remove_fish_eye_effect(player *player, double ray_length, double ray_view_angle);
+
+void draw_untextured_ceiling(sdl_instance *sdl);
+void draw_untextured_floor(sdl_instance *sdl);
 
 #endif

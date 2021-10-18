@@ -167,6 +167,6 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index)
 	if (drawEnd >= SCREEN_HEIGHT)
 		drawEnd = SCREEN_HEIGHT - 1.0;
 
-	REND_COLOR_GREEN(sdl->renderer);
+	REND_COLOR(sdl->renderer, 177, 182, 183, 255);
 	SDL_RenderDrawLine(sdl->renderer, x, drawStart, x, drawEnd);
 }
