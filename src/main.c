@@ -29,6 +29,7 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 	create_renderer(&sdl);
 
 	game_event_loop(&sdl, &map);
+	free_map(&map);
 	safe_close_sdl(&sdl);
 
 	return (0);
