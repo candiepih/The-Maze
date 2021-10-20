@@ -9,18 +9,18 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
 {
 	int quit = 0;
 	SDL_Event e;
-	player player = {{200, 400, 20, 20}, FOV};
+	player player = {{50, 70, PLAYER_WIDTH, PLAYER_WIDTH}, FOV << 2};
 	SDL_Point mouse = {0, 0};
 
 	while (!quit)
 	{
 		poll_events(&quit, &e, &player, &mouse);
-		draw_player(sdl, &player);
 		player_collision_detection(&player, map);
 		draw_untextured_ceiling(sdl);
 		draw_untextured_floor(sdl);
 		raycast(sdl, &player, map);
 		draw_2d_map(sdl, map);
+		draw_player(sdl, &player);
 		send_frame(sdl);
 	}
 }

@@ -45,7 +45,6 @@ void raycast(sdl_instance *sdl, player *player, map_t *map)
 	// Center is the player's center position coordinates
 	center.x = player->locale.x + (player->locale.w / 2);
 	center.y = player->locale.y + (player->locale.h / 2);
-	REND_COLOR_GREEN(sdl->renderer);
 	// We divide the width by 2 for the raycasted map to ocupy half width of screen
 	angleBtwnRays = ((FOV * 1.0) / SCREEN_WIDTH);
 
@@ -56,6 +55,7 @@ void raycast(sdl_instance *sdl, player *player, map_t *map)
 		// Convert deg to radian and rotate point by deg from center
 		point = check_ray_intersections(&center, i, *map, &ray_length);
 		// Draw rays on 2D map
+		REND_COLOR_GREEN(sdl->renderer);
 		SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);
 		// The distorted_distance will give a fishey effect. To get the correct distance
 		// we multiply the distorted distance with cosine of angle of casted ray relative
@@ -80,7 +80,7 @@ map_t map, double *ray_len)
 {
 	SDL_Point point = {center->x, center->y};
 	int i, j;
-	SDL_Rect wall = {0, 0, 64, 64};
+	SDL_Rect wall = {0, 0, GRID_SIZE, GRID_SIZE};
 	line line = {{0,0}, {0,0}};
 	SDL_bool is_intersecting = SDL_FALSE;
 	double op, adj, hy;
@@ -93,8 +93,8 @@ map_t map, double *ray_len)
 		{
 			if (map.arr[i][j] == '0')
 				continue;
-			wall.x = (j << 6) + SCREEN_XY_MARGIN;
-			wall.y = (i << 6) + SCREEN_XY_MARGIN;
+			wall.x = (j << 4) + MAP_MARGIN;
+			wall.y = (i << 4) + MAP_MARGIN;
 			// point start of line
 			line.p1.x = center->x;
 			line.p1.y = center->y;
@@ -114,7 +114,6 @@ map_t map, double *ray_len)
 				point.x = center->x;
 				point.y = center->y;
 				point = rotate_point(&point, center->x, center->y, RADIAN(ray_rotation_angle), hy);
-				// printf("I am intersecting %d\n", k);
 				*ray_len = hy;
 			}
 		}
@@ -140,7 +139,7 @@ double remove_fish_eye_effect(player *player, double ray_length, double ray_view
 	double correct_distance = 0.0;
 	double deg = player->view_angle / 2.0;
 
-	correct_distance = distorted_distance * cos(RADIAN((ray_view_angle - (deg - FOV / 2))));
+	correct_distance = distorted_distance * cos(RADIAN((ray_view_angle - (deg - FOV / 2.0))));
 
 	return (correct_distance);
 }
@@ -157,9 +156,8 @@ double remove_fish_eye_effect(player *player, double ray_length, double ray_view
 void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index)
 {
 	// double offset_x = SCREEN_WIDTH;
-	double lineHeight = (SCREEN_HEIGHT / (ray_length * 1.0)) * 64;
+	double lineHeight = (SCREEN_HEIGHT / (ray_length * 1.0)) * 16;
 	double drawStart = (SCREEN_HEIGHT - lineHeight) / 2.0;
-	double x = ray_index;
 	double drawEnd = (SCREEN_HEIGHT + lineHeight) / 2.0;
 
 	if (drawStart < 0)
@@ -167,6 +165,6 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index)
 	if (drawEnd >= SCREEN_HEIGHT)
 		drawEnd = SCREEN_HEIGHT - 1.0;
 
-	REND_COLOR(sdl->renderer, 177, 182, 183, 255);
-	SDL_RenderDrawLine(sdl->renderer, x, drawStart, x, drawEnd);
+	REND_COLOR(sdl->renderer, 181, 146, 109, 255);
+	SDL_RenderDrawLine(sdl->renderer, ray_index, drawStart, ray_index, drawEnd);
 }

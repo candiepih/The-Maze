@@ -69,8 +69,8 @@ void player_collision_detection(player *player, map_t *map)
 		{
 			if (map->arr[i][j] == '0')
 				continue;
-			wall.x = (j << 6) + SCREEN_XY_MARGIN;
-			wall.y = (i << 6) + SCREEN_XY_MARGIN;
+			wall.x = (j << 4) + MAP_MARGIN;
+			wall.y = (i << 4) + MAP_MARGIN;
 			if (SDL_HasIntersection(&bounding_box, &wall))
 				slide_on_wall(player);
 		}
