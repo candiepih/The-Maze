@@ -30,7 +30,7 @@ SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg, fl
  * @player: data structure of player
  * Return: nothing
  */
-void raycast(sdl_instance *sdl, player *player, map_t map)
+void raycast(sdl_instance *sdl, player *player, map_t *map)
 {
 	// SDL_Point center;
 	SDL_Point point, center;
@@ -47,14 +47,14 @@ void raycast(sdl_instance *sdl, player *player, map_t map)
 	center.y = player->locale.y + (player->locale.h / 2);
 	REND_COLOR_GREEN(sdl->renderer);
 	// We divide the width by 2 for the raycasted map to ocupy half width of screen
-	angleBtwnRays = ((FOV * 1.0) / (SCREEN_WIDTH / 2));
+	angleBtwnRays = ((FOV * 1.0) / SCREEN_WIDTH);
 
 	// Drawing rays from an angle of 60 degrees less from FOV / 2 to FOV / 2
 	// Assuming FOV is 60 then 30 right view angle and -30 our left view angle
 	for (i = (deg - FOV); i <= deg; (i += angleBtwnRays))
 	{
 		// Convert deg to radian and rotate point by deg from center
-		point = check_ray_intersections(&center, i, map, &ray_length);
+		point = check_ray_intersections(&center, i, *map, &ray_length);
 		// Draw rays on 2D map
 		SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);
 		// The distorted_distance will give a fishey effect. To get the correct distance
@@ -80,7 +80,7 @@ map_t map, double *ray_len)
 {
 	SDL_Point point = {center->x, center->y};
 	int i, j;
-	SDL_Rect wall = {0, 0, GRID_SIZE, GRID_SIZE};
+	SDL_Rect wall = {0, 0, 64, 64};
 	line line = {{0,0}, {0,0}};
 	SDL_bool is_intersecting = SDL_FALSE;
 	double op, adj, hy;
@@ -91,7 +91,7 @@ map_t map, double *ray_len)
 	{
 		for (j = 0; j < map.columns; j++)
 		{
-			if (map.arr[i][j] == 0)
+			if (map.arr[i][j] == '0')
 				continue;
 			wall.x = (j << 6) + SCREEN_XY_MARGIN;
 			wall.y = (i << 6) + SCREEN_XY_MARGIN;
@@ -156,10 +156,10 @@ double remove_fish_eye_effect(player *player, double ray_length, double ray_view
  */
 void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index)
 {
-	double offset_x = SCREEN_WIDTH / 2.0;
-	double lineHeight = (SCREEN_HEIGHT / (ray_length * 1.0)) * 32;
+	// double offset_x = SCREEN_WIDTH;
+	double lineHeight = (SCREEN_HEIGHT / (ray_length * 1.0)) * 64;
 	double drawStart = (SCREEN_HEIGHT - lineHeight) / 2.0;
-	double x = offset_x + ray_index;
+	double x = ray_index;
 	double drawEnd = (SCREEN_HEIGHT + lineHeight) / 2.0;
 
 	if (drawStart < 0)

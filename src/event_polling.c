@@ -5,24 +5,22 @@
  * @sdl: data structure of sdl_instance
  * Return: nothing
  */
-void game_event_loop(sdl_instance *sdl)
+void game_event_loop(sdl_instance *sdl, map_t *map)
 {
 	int quit = 0;
 	SDL_Event e;
 	player player = {{200, 400, 20, 20}, FOV};
-	map_t map;
 	SDL_Point mouse = {0, 0};
 
-	map = populate_map();
 	while (!quit)
 	{
 		poll_events(&quit, &e, &player, &mouse);
-		draw_2d_map(sdl, map);
 		draw_player(sdl, &player);
-		player_collision_detection(&player, &map);
+		player_collision_detection(&player, map);
 		draw_untextured_ceiling(sdl);
 		draw_untextured_floor(sdl);
 		raycast(sdl, &player, map);
+		draw_2d_map(sdl, map);
 		send_frame(sdl);
 	}
 }

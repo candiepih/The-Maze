@@ -31,7 +31,8 @@ typedef struct player {
  * @columns: number of columns in @arr array
  */
 typedef struct map {
-	int arr[9][9];
+	// int arr[9][9];
+	char **arr;
 	int rows;
 	int columns;
 } map_t;

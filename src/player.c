@@ -67,7 +67,7 @@ void player_collision_detection(player *player, map_t *map)
 	{
 		for (j = 0; j < map->columns; j++)
 		{
-			if (map->arr[i][j] == 0)
+			if (map->arr[i][j] == '0')
 				continue;
 			wall.x = (j << 6) + SCREEN_XY_MARGIN;
 			wall.y = (i << 6) + SCREEN_XY_MARGIN;
