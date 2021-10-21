@@ -19,8 +19,11 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
 		draw_untextured_ceiling(sdl);
 		draw_untextured_floor(sdl);
 		raycast(sdl, &player, map);
-		draw_2d_map(sdl, map);
-		draw_player(sdl, &player);
+		if (map_active)
+		{
+			draw_2d_map(sdl, map);
+			draw_player(sdl, &player);
+		}
 		send_frame(sdl);
 	}
 }
@@ -54,22 +57,24 @@ void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)
 			*quit = 1;
 			break;
 		case SDLK_w:
-			// player->locale.y -= PLAYER_VEL;
 			player->locale.x += displacement.x;
 			player->locale.y -= displacement.y;
 			break;
 		case SDLK_s:
-			// player->locale.y += PLAYER_VEL;
 			player->locale.x -= displacement.x;
 			player->locale.y += displacement.y;
 			break;
 		case SDLK_a:
-			// player->locale.x -= MOVE_SPEED;
 			player->view_angle -= ROTATION_MAGNITUDE;
 			break;
 		case SDLK_d:
 			player->view_angle += ROTATION_MAGNITUDE;
-			// player->locale.x += MOVE_SPEED;
+			break;
+		case SDLK_m:
+			map_active = SDL_FALSE;
+			break;
+		case SDLK_n:
+			map_active = SDL_TRUE;
 			break;
 		default:
 			break;

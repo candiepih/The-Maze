@@ -48,15 +48,16 @@ void raycast(sdl_instance *sdl, player *player, map_t *map)
 	// We divide the width by 2 for the raycasted map to ocupy half width of screen
 	angleBtwnRays = ((FOV * 1.0) / SCREEN_WIDTH);
 
-	// Drawing rays from an angle of 60 degrees less from FOV / 2 to FOV / 2
-	// Assuming FOV is 60 then 30 right view angle and -30 our left view angle
 	for (i = (deg - FOV); i <= deg; (i += angleBtwnRays))
 	{
 		// Convert deg to radian and rotate point by deg from center
 		point = check_ray_intersections(&center, i, *map, &ray_length);
 		// Draw rays on 2D map
-		REND_COLOR_GREEN(sdl->renderer);
-		SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);
+		if (map_active)
+		{
+			REND_COLOR_GREEN(sdl->renderer);
+			SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);
+		}
 		// The distorted_distance will give a fishey effect. To get the correct distance
 		// we multiply the distorted distance with cosine of angle of casted ray relative
 		// viewing angle
@@ -165,6 +166,6 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index)
 	if (drawEnd >= SCREEN_HEIGHT)
 		drawEnd = SCREEN_HEIGHT - 1.0;
 
-	REND_COLOR(sdl->renderer, 181, 146, 109, 255);
+	REND_COLOR(sdl->renderer, 112, 112, 112, 255);
 	SDL_RenderDrawLine(sdl->renderer, ray_index, drawStart, ray_index, drawEnd);
 }

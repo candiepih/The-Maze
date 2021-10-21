@@ -1,11 +1,13 @@
 #include "../inc/maze.h"
 
+SDL_bool map_active = SDL_TRUE;
+
 /**
  * main - Entry point
  * 
  * Return: (0) on success, exits with failure status on failure
  */
-int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
+int main(int argc, char **argv)
 {
 	sdl_instance sdl = {NULL, NULL};
 	map_t map;

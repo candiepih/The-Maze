@@ -25,6 +25,8 @@
 #include "parser.h"
 #include "player.h"
 
+extern SDL_bool map_active;
+
 /**
  * SDL initialization prototypes
  */
