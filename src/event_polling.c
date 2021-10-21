@@ -42,7 +42,8 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
  *
  * Return: Nothing
  */
-void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse, SDL_bool *map_active)
+void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse,
+		SDL_bool *map_active)
 {
 	SDL_Point displacement = {0, 0};
 

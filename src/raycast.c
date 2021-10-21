@@ -41,7 +41,8 @@ SDL_Point rotate_point(const SDL_Point *point, float cx, float cy,
  * @map_active: Boolean to indicate map displayed or not
  * Return: nothing
  */
-void raycast(sdl_instance *sdl, player *player, map_t *map, SDL_bool *map_active)
+void raycast(sdl_instance *sdl, player *player, map_t *map,
+		SDL_bool *map_active)
 {
 	SDL_Point point, center;
 	double i, deg = player->view_angle / 2.0;
