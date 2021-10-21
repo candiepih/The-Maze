@@ -1,7 +1,5 @@
 #include "../inc/maze.h"
 
-SDL_bool map_active = SDL_TRUE;
-
 /**
  * main - Entry point
  * @argc: Number of arguments passed to the program

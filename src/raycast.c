@@ -38,9 +38,10 @@ SDL_Point rotate_point(const SDL_Point *point, float cx, float cy,
  * @sdl: structure of sdl_instance
  * @player: data structure of player
  * @map: Datastructure of map_t holding map information
+ * @map_active: Boolean to indicate map displayed or not
  * Return: nothing
  */
-void raycast(sdl_instance *sdl, player *player, map_t *map)
+void raycast(sdl_instance *sdl, player *player, map_t *map, SDL_bool *map_active)
 {
 	SDL_Point point, center;
 	double i, deg = player->view_angle / 2.0;
@@ -59,7 +60,7 @@ void raycast(sdl_instance *sdl, player *player, map_t *map)
 		/* Convert deg to radian and rotate point by deg from center */
 		point = check_ray_intersections(&center, i, *map, &ray_length);
 		/* Draw rays on 2D map */
-		if (map_active)
+		if (*map_active)
 		{
 			REND_COLOR_GREEN(sdl->renderer);
 			SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);

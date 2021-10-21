@@ -18,7 +18,6 @@
 #include "parser.h"
 #include "player.h"
 
-extern SDL_bool map_active;
 
 void create_window(char *name, sdl_instance *sdl);
 void safe_close_sdl(sdl_instance *sdl);
@@ -26,12 +25,12 @@ void create_renderer(sdl_instance *sdl);
 void print_sdl_error(void);
 
 void game_event_loop(sdl_instance *sdl, map_t *map);
-void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse);
+void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse, SDL_bool *map_active);
 
 void draw_2d_map(sdl_instance *sdl, map_t *map);
 void send_frame(sdl_instance *sdl);
 
-void raycast(sdl_instance *sdl, player *player,  map_t *map);
+void raycast(sdl_instance *sdl, player *player,  map_t *map, SDL_bool *map_active);
 SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg,
 		float ray_size);
 SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle,
