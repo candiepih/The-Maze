@@ -12,10 +12,10 @@ int count_rows(FILE *fp)
 	char ch;
 	int lines = 0;
 
-	while(!feof(fp))
+	while (!feof(fp))
 	{
 		ch = fgetc(fp);
-		if(ch == '\n')
+		if (ch == '\n')
 		{
 			lines++;
 		}
@@ -56,7 +56,8 @@ int in_array(char needle, char *haystack, unsigned int haystack_size)
  * @line_number: current line number checking
  * Return: nothing
  */
-void validate_line_data(int max_line_count, char *line, FILE *fp, int line_number)
+void validate_line_data(int max_line_count, char *line, FILE *fp,
+		int line_number)
 {
 	char valid_digits[] = {'0', '1'};
 	int i;
@@ -68,7 +69,8 @@ void validate_line_data(int max_line_count, char *line, FILE *fp, int line_numbe
 	{
 		free(line);
 		close_file(fp);
-		printf("Error line No. %d: The columns of the map should be equal.\n", line_number);
+		printf("Error line No. %d: The columns of the map should be equal.\n",
+				line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -89,7 +91,7 @@ void validate_line_data(int max_line_count, char *line, FILE *fp, int line_numbe
  * @s2: source string to concatenate
  * Return: New string with @s1 and @s2
  */
-char* concat(const char *s1, const char *s2)
+char *concat(const char *s1, const char *s2)
 {
 	char *result = NULL;
 

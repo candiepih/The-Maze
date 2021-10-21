@@ -3,6 +3,7 @@
 /**
  * game_event_loop - handles SDL rendering loop and listening to events
  * @sdl: data structure of sdl_instance
+ * @map: map_t data structure representing 2D map
  * Return: nothing
  */
 void game_event_loop(sdl_instance *sdl, map_t *map)
@@ -36,7 +37,7 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
  * @player: pointer to data structure of player holds players information
  * @mouse: Pointer to SDL_Point holding mouse x, y positions
  * concerning events
- * 
+ *
  * Return: Nothing
  */
 void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)

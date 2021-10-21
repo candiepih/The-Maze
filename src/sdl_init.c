@@ -4,13 +4,13 @@
  * print_sdl_error - prints any sdl error
  * Return: nothing
  */
-void print_sdl_error()
+void print_sdl_error(void)
 {
 	printf("SDL Error Occured:%s\n", SDL_GetError());
 }
 
 /**
- * crete_window - creates sdl window instance
+ * create_window - creates sdl window instance
  * @name: string pointer to be used to window title
  * @sdl: data structure of sdl_instance
  * Return: (0) if window wasn't created else (1)
@@ -29,7 +29,7 @@ void create_window(char *name, sdl_instance *sdl)
 
 /**
  * create_renderer - creates sdl renderer instance
- * @sdl)g: data structure of sdl_instance
+ * @sdl: data structure of sdl_instance
  * Return: nothing
  */
 void create_renderer(sdl_instance *sdl)
