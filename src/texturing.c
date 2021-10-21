@@ -21,6 +21,7 @@ void shade_walls(SDL_Color *color_ref, int orientation)
 /**
  * textured_sky - Draws sky from a bmp file
  * @sdl: data structure of sdl_instance
+ * @map: data structure of map_t containing 2D map information
  * Return: nothing
  */
 void textured_sky(sdl_instance *sdl, map_t *map)
@@ -53,12 +54,14 @@ void textured_sky(sdl_instance *sdl, map_t *map)
  * @alpha: controls darkening of some pixels for orientation
  * Return: nothing
  */
-void texture_walls(sdl_instance *sdl, double line_height, int column, int y_pos, uint8_t alpha)
+void texture_walls(sdl_instance *sdl, double line_height, int column,
+		int y_pos, uint8_t alpha)
 {
 	SDL_Rect dest = {0, 0, 1, 64};
 	SDL_Rect src_rect = {(column % 64), 0, 1, 64};
 	int result;
-	SDL_Surface *dest_surface = SDL_CreateRGBSurfaceWithFormat(0, 1, 64, 32, SDL_GetWindowPixelFormat(sdl->window));
+	SDL_Surface *dest_surface = SDL_CreateRGBSurfaceWithFormat(0, 1,
+			64, 32, SDL_GetWindowPixelFormat(sdl->window));
 	SDL_Rect rend_rect = {column, y_pos, 1, (line_height)};
 
 	if (!sdl->wall_surface)
@@ -70,7 +73,6 @@ void texture_walls(sdl_instance *sdl, double line_height, int column, int y_pos,
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	SDL_UnlockSurface(dest_surface);
 	result = SDL_BlitSurface(sdl->wall_surface, &src_rect, dest_surface, &dest);
 	SDL_LockSurface(dest_surface);
@@ -79,17 +81,18 @@ void texture_walls(sdl_instance *sdl, double line_height, int column, int y_pos,
 		printf("Error: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-
 	if (!sdl->wall_texture)
 	{
-		sdl->wall_texture = SDL_CreateTextureFromSurface(sdl->renderer, dest_surface);
+		sdl->wall_texture = SDL_CreateTextureFromSurface(sdl->renderer,
+				dest_surface);
 		if (!sdl->wall_texture)
 		{
 			printf("Error: %s\n", SDL_GetError());
 			exit(EXIT_FAILURE);
 		}
 	}
-	SDL_UpdateTexture(sdl->wall_texture, NULL, dest_surface->pixels, dest_surface->pitch);
+	SDL_UpdateTexture(sdl->wall_texture, NULL, dest_surface->pixels,
+			dest_surface->pitch);
 	SDL_SetTextureColorMod(sdl->wall_texture, alpha, alpha, alpha);
 	SDL_RenderCopy(sdl->renderer, sdl->wall_texture, NULL, &rend_rect);
 	SDL_FreeSurface(dest_surface);
@@ -98,7 +101,8 @@ void texture_walls(sdl_instance *sdl, double line_height, int column, int y_pos,
 /**
  * render_thread - A thread to handle rendering
  * @td: void pointer to thread_data data structure
- * Description: This was necessary since the blitting process and updating textures
+ * Description: This was necessary since the blitting process
+ * and updating textures
  * takes a while which sometimes slows the program
  *
  * Return: integer for the thread status
@@ -134,8 +138,10 @@ int render_thread(void *td)
 }
 
 /**
- * textured_sky - Draws sky from a bmp file
+ * weapon_gun - Draws gun image, bmp file to screen
  * @sdl: data structure of sdl_instance
+ * @map: data structure of map_t containing 2D map information
+ *
  * Return: nothing
  */
 void weapon_gun(sdl_instance *sdl, map_t *map)

@@ -58,16 +58,18 @@ void player_collision_detection(player *player, map_t *map)
 }
 
 /**
- * check_intersect_orientation - Checks if a line intersects with rectangle sides
- * of the rectangle.
- * @wall: SDL_Rect data structure with rectangle to check for intersection on sides
+ * check_intersect_orientation - Checks if a line intersects with
+ * rectangle sides of the rectangle.
+ * @wall: SDL_Rect data structure with rectangle to check for
+ * intersection on sides
  * @pointA: Pointer at beginning of line, or rather our ray
  * @pointB: Pointer to a point at the end of line
  *
  * Return: (1) if intersection occured on top or bottom of rectangle else (2)
  * if the intersection occured on the left or right side of rectangle
  */
-int check_intersect_orientation(SDL_Rect wall, SDL_Point *pointA, SDL_Point *pointB)
+int check_intersect_orientation(SDL_Rect wall, SDL_Point *pointA,
+		SDL_Point *pointB)
 {
 	line top = {{wall.x, wall.y}, {wall.x + wall.w, wall.y}};
 	line bottom = {{wall.x, wall.y + wall.h}, {wall.x + wall.w, wall.y + wall.h}};
@@ -101,29 +103,30 @@ int lines_intersect(line *line1, line *line2, SDL_Point *hitp)
 	int d, n_a, n_b, ua, ub;
 
 	/* Denominator for ua and ub are the same so store this calculation */
-	d = (line2->p2.y - line2->p1.y)*(line1->p2.x-line1->p1.x) -
-	(line2->p2.x - line2->p1.x)*(line1->p2.y-line1->p1.y);
-                
+	d = (line2->p2.y - line2->p1.y) * (line1->p2.x - line1->p1.x) -
+	(line2->p2.x - line2->p1.x) * (line1->p2.y - line1->p1.y);
+
 	/* n_a and n_b are calculated as seperate values for readability */
-	n_a = (line2->p2.x - line2->p1.x)*(line1->p1.y-line2->p1.y) - 
-	(line2->p2.y - line2->p1.y)*(line1->p1.x-line2->p1.x);
-                
-	n_b = (line1->p2.x - line1->p1.x)*(line1->p1.y - line2->p1.y) -
-	(line1->p2.y - line1->p1.y)*(line1->p1.x - line2->p1.x);
-              
-	/* Make sure there is not a division by zero - this also indicates that
-	 * the lines are parallel.  
+	n_a = (line2->p2.x - line2->p1.x) * (line1->p1.y - line2->p1.y) -
+	(line2->p2.y - line2->p1.y) * (line1->p1.x - line2->p1.x);
+
+	n_b = (line1->p2.x - line1->p1.x) * (line1->p1.y - line2->p1.y) -
+	(line1->p2.y - line1->p1.y) * (line1->p1.x - line2->p1.x);
+
+	/**
+	 * Make sure there is not a division by zero - this also indicates that
+	 * the lines are parallel.
 	 *
-	 * If n_a and n_b were both equal to zero the lines would be on top of each 
+	 * If n_a and n_b were both equal to zero the lines would be on top of each
 	 * other (coincidental).
 	 */
-	if(d == 0)
-	    return (0);
+	if (d == 0)
+		return (0);
 
 	ua = (n_a << 14) / d;
 	ub = (n_b << 14) / d;
 
-	if(ua >=0 && ua <= (1 << 14) && ub >= 0 && ub <= (1 << 14))
+	if (ua >= 0 && ua <= (1 << 14) && ub >= 0 && ub <= (1 << 14))
 	{
 		hitp->x = line1->p1.x + ((ua * (line1->p2.x - line1->p1.x)) >> 14);
 		hitp->y = line1->p1.y + ((ua * (line1->p2.y - line1->p1.y)) >> 14);

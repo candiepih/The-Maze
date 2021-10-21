@@ -49,7 +49,6 @@ void raycast(sdl_instance *sdl, player *player, map_t *map,
 	double angleBtwnRays;
 	double ray_length = 0.0;
 	double correct_distance = 0.0;
-	// int screen_column_index = 0;
 	SDL_Color orientation_color = {0, 0, 0, 0};
 	int orientation;
 	double ang = (deg - FOV);
@@ -62,7 +61,8 @@ void raycast(sdl_instance *sdl, player *player, map_t *map,
 	for (i = 0; i < SCREEN_WIDTH; i++)
 	{
 		/* Convert deg to radian and rotate point by deg from center */
-		point = check_ray_intersections(&center, ang, *map, &ray_length, &orientation);
+		point = check_ray_intersections(&center, ang, *map, &ray_length,
+				&orientation);
 		shade_walls(&orientation_color, orientation);
 		/* Draw rays on 2D map */
 		if (*map_active)
@@ -107,7 +107,7 @@ map_t map, double *ray_len, int *orientation)
 				continue;
 			wall.x = (j << 4) + MAP_MARGIN;
 			wall.y = (i << 4) + MAP_MARGIN;
-		
+
 			line.p1 = *center;
 			line.p2 = point;
 			is_intersecting = SDL_IntersectRectAndLine(&wall,
@@ -152,7 +152,7 @@ double remove_fish_eye_effect(player *player, double ray_length,
 
 	/**
 	 * The distorted_distance will give a fishey effect.
-	 * To get the correct distance we multiply the distorted 
+	 * To get the correct distance we multiply the distorted
 	 * distance with cosine of angle of casted ray relative to viewing angle
 	 */
 
@@ -179,14 +179,20 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index,
 	double line_height = ceil((SCREEN_HEIGHT / (ray_length * 1.0)) *
 		(d_to_projection_plane >> 6));
 	double draw_start = (SCREEN_HEIGHT / 2.0) - (line_height / 2.0);
-	// double draw_end = draw_start + line_height;
-
-	// if (draw_start < 0)
-	// 	draw_start = 0;
-	// if (draw_end >= SCREEN_HEIGHT)
-	// 	draw_end = SCREEN_HEIGHT - 1.0;
-
-	/* REND_COLOR(sdl->renderer, wall_color.r, wall_color.g, wall_color.b, wall_color.a); */
+	/**
+	 * double draw_end = draw_start + line_height;
+	 * if (draw_start < 0)
+	 * draw_start = 0;
+	 * if (draw_end >= SCREEN_HEIGHT)
+	 * draw_end = SCREEN_HEIGHT - 1.0;
+	 */
+	/**
+	 * REND_COLOR(sdl->renderer, wall_color.r, wall_color.g, wall_color.b,
+	 * wall_color.a);
+	 */
 	texture_walls(sdl, line_height, ray_index, draw_start, wall_color.a);
-	/* SDL_RenderDrawLine(sdl->renderer, ray_index, draw_start, ray_index, draw_end); */
+	/**
+	 * SDL_RenderDrawLine(sdl->renderer, ray_index, draw_start, ray_index,
+	 * draw_end);
+	 */
 }
