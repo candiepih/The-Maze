@@ -5,10 +5,10 @@ OBJS = src/*.c
 CC = gcc
 
 #INCLUDE_PATHS specifies the additional include paths we'll need
-INCLUDE_PATHS = -ISDL2\i686-w64-mingw32\include\SDL2
+INCLUDE_PATHS = -ISDL2\include\SDL2
 
 #LIBRARY_PATHS specifies the additional library paths we'll need
-LIBRARY_PATHS = -LSDL2\i686-w64-mingw32\lib
+LIBRARY_PATHS = -LSDL2\lib
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings

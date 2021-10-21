@@ -3,24 +3,29 @@
 /**
  * game_event_loop - handles SDL rendering loop and listening to events
  * @sdl: data structure of sdl_instance
+ * @map: map_t data structure representing 2D map
  * Return: nothing
  */
-void game_event_loop(sdl_instance *sdl)
+void game_event_loop(sdl_instance *sdl, map_t *map)
 {
 	int quit = 0;
 	SDL_Event e;
-	player player = {{200, 200, 20, 20}, FOV};
-	map_t map;
+	player player = {{50, 70, PLAYER_WIDTH, PLAYER_WIDTH}, FOV << 2};
 	SDL_Point mouse = {0, 0};
+	SDL_bool map_active = SDL_TRUE;
 
-	map = populate_map();
 	while (!quit)
 	{
-		poll_events(&quit, &e, &player, &mouse);
-		draw_2d_map(sdl, map);
-		draw_player(sdl, &player);
-		player_collision_detection(&player, &map);
-		raycast(sdl, &player, map);
+		poll_events(&quit, &e, &player, &mouse, &map_active);
+		player_collision_detection(&player, map);
+		draw_untextured_ceiling(sdl);
+		draw_untextured_floor(sdl);
+		raycast(sdl, &player, map, &map_active);
+		if (map_active)
+		{
+			draw_2d_map(sdl, map);
+			draw_player(sdl, &player);
+		}
 		send_frame(sdl);
 	}
 }
@@ -32,11 +37,13 @@ void game_event_loop(sdl_instance *sdl)
  * @e: pointer to SDL_Event data structure that holds information
  * @player: pointer to data structure of player holds players information
  * @mouse: Pointer to SDL_Point holding mouse x, y positions
+ * @map_active: Boolean to indicate map displayed or not
  * concerning events
- * 
+ *
  * Return: Nothing
  */
-void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)
+void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse,
+		SDL_bool *map_active)
 {
 	SDL_Point displacement = {0, 0};
 
@@ -54,22 +61,24 @@ void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse)
 			*quit = 1;
 			break;
 		case SDLK_w:
-			// player->locale.y -= PLAYER_VEL;
 			player->locale.x += displacement.x;
 			player->locale.y -= displacement.y;
 			break;
 		case SDLK_s:
-			// player->locale.y += PLAYER_VEL;
 			player->locale.x -= displacement.x;
 			player->locale.y += displacement.y;
 			break;
 		case SDLK_a:
-			// player->locale.x -= MOVE_SPEED;
 			player->view_angle -= ROTATION_MAGNITUDE;
 			break;
 		case SDLK_d:
 			player->view_angle += ROTATION_MAGNITUDE;
-			// player->locale.x += MOVE_SPEED;
+			break;
+		case SDLK_m:
+			*map_active = SDL_FALSE;
+			break;
+		case SDLK_n:
+			*map_active = SDL_TRUE;
 			break;
 		default:
 			break;

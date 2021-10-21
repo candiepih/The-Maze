@@ -6,10 +6,9 @@
  *
  * @window: SDL window
  * @renderer: SDL renderer
- * @width: Width of @window
- * @height: Height of @window
  */
-typedef struct sdl_instance {
+typedef struct sdl_instance
+{
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 } sdl_instance;
@@ -17,21 +16,23 @@ typedef struct sdl_instance {
 /**
  * struct player - Data structure containing the player information
  * @locale: Contains information of player displayed as a SDL rectangle
- * @degrees: Player rotation
+ * @view_angle: Players current angle viewing from
  */
-typedef struct player {
-    SDL_Rect locale;
-    float view_angle;
+typedef struct player
+{
+	SDL_Rect locale;
+	float view_angle;
 } player;
 
 /**
  * struct map - Data structure holding map information
- * @arr: multidimension array of integers
+ * @arr: multidimension array of integer characters
  * @rows: number of rows in @arr array
  * @columns: number of columns in @arr array
  */
-typedef struct map {
-	int arr[9][9];
+typedef struct map
+{
+	char **arr;
 	int rows;
 	int columns;
 } map_t;
@@ -41,7 +42,8 @@ typedef struct map {
  * @p1: start of line. Contains it's x and y coordinates
  * @p2: end of line. Contains it's x and y coordinates
  */
-typedef struct line {
+typedef struct line
+{
 	SDL_Point p1;
 	SDL_Point p2;
 } line;

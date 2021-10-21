@@ -1,19 +1,19 @@
 #ifndef SDL_MACROS_H
 #define SDL_MACROS_H
 
-/**
- * Macros for sdl rendering colors
- */
-#define REND_COLOR_WHITE(x) SDL_SetRenderDrawColor(x, 255, 255, 255, 255);
-#define REND_COLOR_BLACK(x) SDL_SetRenderDrawColor(x, 0, 0, 0, 255);
-#define REND_COLOR_YELLOW(x) SDL_SetRenderDrawColor(x, 255, 255, 0, 255);
-#define REND_COLOR_GREEN(x) SDL_SetRenderDrawColor(x, 0, 255, 0, 255);
-#define TRUE 1;
-#define FALSE 0;
+#define REND_COLOR_WHITE(x) SDL_SetRenderDrawColor(x, 255, 255, 255, 255)
+#define REND_COLOR_BLACK(x) SDL_SetRenderDrawColor(x, 0, 0, 0, 255)
+#define REND_COLOR_YELLOW(x) SDL_SetRenderDrawColor(x, 255, 255, 0, 255)
+#define REND_COLOR_GREEN(x) SDL_SetRenderDrawColor(x, 0, 255, 0, 255)
+#define REND_COLOR_BLUE(x) SDL_SetRenderDrawColor(x, 0, 0, 255, 255)
+#define REND_COLOR(x, r, g, b, a) SDL_SetRenderDrawColor(x, r, g, b, a)
+#define TRUE 1
+#define FALSE 0
 #define SCREEN_WIDTH 1400
 #define SCREEN_HEIGHT 900
-#define SCREEN_XY_MARGIN 100
-#define GRID_SIZE 64
+#define MAP_MARGIN 20
+#define PLAYER_WIDTH 10
+#define GRID_SIZE 16
 #define WINDOW_TITLE "The Maze. Find your way"
 #define FOV 60
 #define RADIAN(x) (x * (M_PI / 180.0))
