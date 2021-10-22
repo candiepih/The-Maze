@@ -41,8 +41,8 @@ SDL_Point move_player(player *player)
 	SDL_Point displacement = {0, 0};
 	double deg = player->view_angle;
 
-	displacement.x = cos(RADIAN((90 - (deg / 2)))) * MOVE_SPEED;
-	displacement.y = sin(RADIAN((90 - (deg / 2)))) * MOVE_SPEED;
+	displacement.x = cos(RADIAN((90 - (deg - (FOV / 2))))) * MOVE_SPEED;
+	displacement.y = sin(RADIAN((90 - (deg - (FOV / 2))))) * MOVE_SPEED;
 
 	return (displacement);
 }
@@ -56,7 +56,7 @@ void slide_on_wall(player *player)
 {
 	int angle;
 
-	quadrant_of_angle(player->view_angle / 2, &angle);
+	quadrant_of_angle((player->view_angle - (FOV / 2.0)), &angle);
 
 	if (angle > 300 || angle < 60)
 	{

@@ -13,10 +13,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
 #include "structures.h"
 #include "macros.h"
 #include "parser.h"
 #include "player.h"
+#include "shade.h"
+#include "raycast.h"
 
 
 void create_window(char *name, sdl_instance *sdl);
@@ -31,17 +34,8 @@ void poll_events(int *quit, SDL_Event *e, player *player, SDL_Point *mouse,
 void draw_2d_map(sdl_instance *sdl, map_t *map);
 void send_frame(sdl_instance *sdl);
 
-void raycast(sdl_instance *sdl, player *player,  map_t *map,
-		SDL_bool *map_active);
+
 SDL_Point rotate_point(const SDL_Point *point, float cx, float cy, float deg,
 		float ray_size);
-SDL_Point check_ray_intersections(SDL_Point *center, double ray_rotation_angle,
-		map_t map, double *ray_len);
-void draw_3D_walls(sdl_instance *sdl, double ray_length, int index);
-double remove_fish_eye_effect(player *player, double ray_length,
-		double ray_view_angle);
-
-void draw_untextured_ceiling(sdl_instance *sdl);
-void draw_untextured_floor(sdl_instance *sdl);
 
 #endif
