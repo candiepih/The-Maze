@@ -49,19 +49,20 @@ void raycast(sdl_instance *sdl, player *player, map_t *map,
 	double angleBtwnRays;
 	double ray_length = 0.0;
 	double correct_distance = 0.0;
-	int screen_column_index = 0;
+	// int screen_column_index = 0;
 	SDL_Color orientation_color = {0, 0, 0, 0};
 	int orientation;
+	double ang = (deg - FOV);
 
 	/* Center is the player's center position coordinates */
 	center.x = player->locale.x + (player->locale.w / 2);
 	center.y = player->locale.y + (player->locale.h / 2);
-	angleBtwnRays = ((FOV * 1.0) / SCREEN_WIDTH);
+	angleBtwnRays = ((FOV) / (SCREEN_WIDTH * 1.0));
 
-	for (i = (deg - FOV); i <= deg; (i += angleBtwnRays))
+	for (i = 0; i < SCREEN_WIDTH; i++)
 	{
 		/* Convert deg to radian and rotate point by deg from center */
-		point = check_ray_intersections(&center, i, *map, &ray_length, &orientation);
+		point = check_ray_intersections(&center, ang, *map, &ray_length, &orientation);
 		shade_walls(&orientation_color, orientation);
 		/* Draw rays on 2D map */
 		if (*map_active)
@@ -69,9 +70,10 @@ void raycast(sdl_instance *sdl, player *player, map_t *map,
 			REND_COLOR_GREEN(sdl->renderer);
 			SDL_RenderDrawLine(sdl->renderer, center.x, center.y, point.x, point.y);
 		}
-		correct_distance = remove_fish_eye_effect(player, ray_length, i);
-		draw_3D_walls(sdl, correct_distance, screen_column_index, orientation_color);
-		screen_column_index++;
+		correct_distance = remove_fish_eye_effect(player, ray_length, ang);
+		draw_3D_walls(sdl, correct_distance, i, orientation_color);
+
+		ang += angleBtwnRays;
 	}
 }
 
@@ -105,6 +107,7 @@ map_t map, double *ray_len, int *orientation)
 				continue;
 			wall.x = (j << 4) + MAP_MARGIN;
 			wall.y = (i << 4) + MAP_MARGIN;
+		
 			line.p1 = *center;
 			line.p2 = point;
 			is_intersecting = SDL_IntersectRectAndLine(&wall,
@@ -175,7 +178,7 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index,
 	int d_to_projection_plane = (SCREEN_WIDTH / 2) / (tan(RADIAN((FOV / 2))));
 	double line_height = ceil((SCREEN_HEIGHT / (ray_length * 1.0)) *
 		(d_to_projection_plane >> 6));
-	double draw_start = ceil((SCREEN_HEIGHT / 2.0) - (line_height / 2.0));
+	double draw_start = (SCREEN_HEIGHT / 2.0) - (line_height / 2.0);
 	double draw_end = draw_start + line_height;
 
 	if (draw_start < 0)

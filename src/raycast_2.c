@@ -98,7 +98,7 @@ int check_intersect_orientation(SDL_Rect wall, SDL_Point *pointA, SDL_Point *poi
  */
 int lines_intersect(line *line1, line *line2, SDL_Point *hitp)
 {
-    int d, n_a, n_b, ua, ub;
+	int d, n_a, n_b, ua, ub;
 
 	/* Denominator for ua and ub are the same so store this calculation */
 	d = (line2->p2.y - line2->p1.y)*(line1->p2.x-line1->p1.x) -
@@ -130,5 +130,5 @@ int lines_intersect(line *line1, line *line2, SDL_Point *hitp)
 		return (1);
 	}
 
-    return (0);
+	return (0);
 }

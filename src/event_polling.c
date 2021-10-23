@@ -10,7 +10,7 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
 {
 	int quit = 0;
 	SDL_Event e;
-	player player = {{50, 70, PLAYER_WIDTH, PLAYER_WIDTH}, FOV << 2};
+	player player = {{80, 70, PLAYER_WIDTH, PLAYER_WIDTH}, (FOV * 2.5)};
 	SDL_Point mouse = {0, 0};
 	SDL_bool map_active = SDL_TRUE;
 
