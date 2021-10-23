@@ -1,11 +1,11 @@
 #include "../inc/maze.h"
 
 /**
- * draw_untextured_ceiling - Draws untextured ceiling to the screen
+ * untextured_sky - Draws untextured ceiling to the screen
  * @sdl: instance of sdl data structure
  * Return: nothing
  */
-void draw_untextured_ceiling(sdl_instance *sdl)
+void untextured_sky(sdl_instance *sdl)
 {
 	SDL_Rect sky_dome = {0, 0, SCREEN_WIDTH, (SCREEN_HEIGHT >> 1)};
 
@@ -14,11 +14,11 @@ void draw_untextured_ceiling(sdl_instance *sdl)
 }
 
 /**
- * draw_untextured_floor - Draws untextured floor to the screen
+ * untextured_floor - Draws untextured floor to the screen
  * @sdl: instance of sdl data structure
  * Return: nothing
  */
-void draw_untextured_floor(sdl_instance *sdl)
+void untextured_floor(sdl_instance *sdl)
 {
 	double offset_y = (SCREEN_HEIGHT >> 1);
 	SDL_Rect sky_dome = {0, offset_y, SCREEN_WIDTH, (SCREEN_HEIGHT >> 1)};

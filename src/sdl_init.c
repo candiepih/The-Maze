@@ -55,6 +55,8 @@ void safe_close_sdl(sdl_instance *sdl)
 		SDL_DestroyWindow(sdl->window);
 	if (sdl->renderer)
 		SDL_DestroyRenderer(sdl->renderer);
+	if (sdl->skybox)
+		SDL_DestroyTexture(sdl->skybox);
 	sdl->window = NULL;
 	sdl->renderer = NULL;
 	SDL_Quit();

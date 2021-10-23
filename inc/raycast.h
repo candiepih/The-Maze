@@ -9,8 +9,8 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int index, SDL_Color wa
 double remove_fish_eye_effect(player *player, double ray_length,
 		double ray_view_angle);
 
-void draw_untextured_ceiling(sdl_instance *sdl);
-void draw_untextured_floor(sdl_instance *sdl);
+void untextured_sky(sdl_instance *sdl);
+void untextured_floor(sdl_instance *sdl);
 int check_intersect_orientation(SDL_Rect wall, SDL_Point *pointA,
 		SDL_Point *pointB);
 int lines_intersect(line *line1, line *line2, SDL_Point *hitp);

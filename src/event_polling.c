@@ -18,8 +18,8 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
 	{
 		poll_events(&quit, &e, &player, &mouse, &map_active);
 		player_collision_detection(&player, map);
-		draw_untextured_ceiling(sdl);
-		draw_untextured_floor(sdl);
+		textured_sky(sdl);
+		untextured_floor(sdl);
 		raycast(sdl, &player, map, &map_active);
 		if (map_active)
 		{

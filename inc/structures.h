@@ -11,6 +11,7 @@ typedef struct sdl_instance
 {
 	SDL_Window *window;
 	SDL_Renderer *renderer;
+	SDL_Texture *skybox;
 } sdl_instance;
 
 /**
