@@ -15,13 +15,18 @@ void draw_2d_map(sdl_instance *sdl, map_t *map)
 	{
 		for (j = 0; j < map->columns; j++)
 		{
-			if (map->arr[i][j] == '0')
-				continue;
-
 			block.x = (j << 4) + MAP_MARGIN;
 			block.y = (i << 4) + MAP_MARGIN;
-			REND_COLOR(sdl->renderer, 0, 0, 0, 150);
-			SDL_RenderFillRect(sdl->renderer, &block);
+			if (map->arr[i][j] == '0')
+			{
+				REND_COLOR(sdl->renderer, 255, 255, 255, 100);
+				SDL_RenderFillRect(sdl->renderer, &block);
+			}
+			else
+			{
+				REND_COLOR(sdl->renderer, 0, 0, 0, 150);
+				SDL_RenderFillRect(sdl->renderer, &block);
+			}
 		}
 	}
 }

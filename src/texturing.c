@@ -23,7 +23,7 @@ void shade_walls(SDL_Color *color_ref, int orientation)
  * @sdl: data structure of sdl_instance
  * Return: nothing
  */
-void textured_sky(sdl_instance *sdl)
+void textured_sky(sdl_instance *sdl, map_t *map)
 {
 	SDL_Rect sky_dome = {0, 0, SCREEN_WIDTH, (SCREEN_HEIGHT >> 1)};
 	SDL_Surface *surface;
@@ -34,6 +34,8 @@ void textured_sky(sdl_instance *sdl)
 		if (!surface)
 		{
 			printf("Error: %s", SDL_GetError());
+			free_map(map);
+			safe_close_sdl(sdl);
 			exit(EXIT_FAILURE);
 		}
 		sdl->skybox = SDL_CreateTextureFromSurface(sdl->renderer, surface);
