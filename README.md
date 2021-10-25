@@ -34,17 +34,51 @@ Ensure sdl is installed.
 
 run `make mac` (*Haven't tested it yet on Mac environment*)
 
+# Running program
+
+After successfully compiling run the program using following command
+
+`./maze MAP`
+
+Where `MAP` is the name of the file found in the maps folder. You can create other maps and pass them while running program as above. Map files accept only the allowed characters.
+
+Have fun!
+
 # Controls
 
 `W` - Moving forward
+
 `S` - Moving backward
+
 `A` - Look left
+
 `D` - Look right
+
  `Mouse move left/right` - look left or right
+ 
  `M` - Turn off map visibility. The 2D map won't be visible on clicking
+ 
  `N` - Turn on map visibility. The 2D map will be visible again if it wasn't
  
-### Texture source
+# Directories
+
+[`src`](https://github.com/candiepih/The-Maze/tree/main/src)
+
+Contains all the source code files written in C.
+
+[`inc`](https://github.com/candiepih/The-Maze/tree/main/inc)
+
+Contains all the header files.
+
+[`maps`](https://github.com/candiepih/The-Maze/tree/main/maps)
+
+Contains map data files. This will be used by the program to output the map layout.
+
+[`images`]()
+
+Contains image files.
+ 
+### Texture sources
 
 Weapon
 
