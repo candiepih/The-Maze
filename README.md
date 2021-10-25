@@ -21,3 +21,9 @@ run `make linux` to compile.
 Ensure sdl is installed.
 
 run `make mac` (*Haven't tested it yet on Mac environment*)
+
+### Texture source
+
+Weapon
+
+https://www.seekpng.com/idown/u2w7u2t4i1y3a9y3_call-of-duty-guns-firearms-gun-weapons-coat/
