@@ -77,8 +77,13 @@ Contains map data files. This will be used by the program to output the map layo
 [`images`]()
 
 Contains image files.
+
+# Images
+
+![image](https://user-images.githubusercontent.com/44834632/138765500-bd3838d0-fe46-4018-87b0-21143fb77e8b.png)
+
  
-### Texture sources
+## Texture sources
 
 Weapon
 
