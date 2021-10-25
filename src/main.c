@@ -8,7 +8,7 @@
  */
 int main(int argc, char **argv)
 {
-	sdl_instance sdl = {NULL, NULL, NULL};
+	sdl_instance sdl = {NULL, NULL, NULL, NULL, NULL};
 	map_t map;
 	char *map_path;
 

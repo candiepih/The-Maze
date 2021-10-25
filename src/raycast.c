@@ -187,5 +187,6 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index,
 		draw_end = SCREEN_HEIGHT - 1.0;
 
 	REND_COLOR(sdl->renderer, wall_color.r, wall_color.g, wall_color.b, wall_color.a);
-	SDL_RenderDrawLine(sdl->renderer, ray_index, draw_start, ray_index, draw_end);
+	texture_walls(sdl, line_height, ray_index, draw_start, wall_color.a);
+	// SDL_RenderDrawLine(sdl->renderer, ray_index, draw_start, ray_index, draw_end);
 }
