@@ -117,6 +117,7 @@ int render_thread(void *td)
 		textured_sky(data->sdl, data->map);
 		untextured_floor(data->sdl);
 		raycast(data->sdl, data->player, data->map, data->map_active);
+		weapon_gun(data->sdl, data->map);
 		if (*data->map_active)
 		{
 			draw_2d_map(data->sdl, data->map);
@@ -130,4 +131,30 @@ int render_thread(void *td)
 		SDL_Delay(floor(16.666 - elapsedMs));
 	}
 	return (0);
+}
+
+/**
+ * textured_sky - Draws sky from a bmp file
+ * @sdl: data structure of sdl_instance
+ * Return: nothing
+ */
+void weapon_gun(sdl_instance *sdl, map_t *map)
+{
+	SDL_Rect weapon = {700, 450, 700, 450};
+	SDL_Surface *surface;
+
+	if (!sdl->weapon)
+	{
+		surface = SDL_LoadBMP("images/gun1.bmp");
+		if (!surface)
+		{
+			printf("Error: %s", SDL_GetError());
+			free_map(map);
+			safe_close_sdl(sdl);
+			exit(EXIT_FAILURE);
+		}
+		sdl->weapon = SDL_CreateTextureFromSurface(sdl->renderer, surface);
+		SDL_FreeSurface(surface);
+	}
+	SDL_RenderCopy(sdl->renderer, sdl->weapon, NULL, &weapon);
 }

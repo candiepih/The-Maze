@@ -61,6 +61,8 @@ void safe_close_sdl(sdl_instance *sdl)
 		SDL_FreeSurface(sdl->wall_surface);
 	if (sdl->wall_texture)
 		SDL_DestroyTexture(sdl->wall_texture);
+	if (sdl->weapon)
+		SDL_DestroyTexture(sdl->weapon);
 	sdl->window = NULL;
 	sdl->renderer = NULL;
 	sdl->skybox = NULL;

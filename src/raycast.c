@@ -179,14 +179,14 @@ void draw_3D_walls(sdl_instance *sdl, double ray_length, int ray_index,
 	double line_height = ceil((SCREEN_HEIGHT / (ray_length * 1.0)) *
 		(d_to_projection_plane >> 6));
 	double draw_start = (SCREEN_HEIGHT / 2.0) - (line_height / 2.0);
-	double draw_end = draw_start + line_height;
+	// double draw_end = draw_start + line_height;
 
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end >= SCREEN_HEIGHT)
-		draw_end = SCREEN_HEIGHT - 1.0;
+	// if (draw_start < 0)
+	// 	draw_start = 0;
+	// if (draw_end >= SCREEN_HEIGHT)
+	// 	draw_end = SCREEN_HEIGHT - 1.0;
 
-	REND_COLOR(sdl->renderer, wall_color.r, wall_color.g, wall_color.b, wall_color.a);
+	/* REND_COLOR(sdl->renderer, wall_color.r, wall_color.g, wall_color.b, wall_color.a); */
 	texture_walls(sdl, line_height, ray_index, draw_start, wall_color.a);
-	// SDL_RenderDrawLine(sdl->renderer, ray_index, draw_start, ray_index, draw_end);
+	/* SDL_RenderDrawLine(sdl->renderer, ray_index, draw_start, ray_index, draw_end); */
 }
