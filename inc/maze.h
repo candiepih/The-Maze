@@ -13,12 +13,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <SDL_thread.h>
 
 #include "structures.h"
 #include "macros.h"
 #include "parser.h"
 #include "player.h"
-#include "shade.h"
+#include "texture.h"
 #include "raycast.h"
 
 

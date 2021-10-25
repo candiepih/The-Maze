@@ -13,21 +13,17 @@ void game_event_loop(sdl_instance *sdl, map_t *map)
 	player player = {{80, 70, PLAYER_WIDTH, PLAYER_WIDTH}, (FOV * 2.5)};
 	SDL_Point mouse = {0, 0};
 	SDL_bool map_active = SDL_TRUE;
+	thread_data data = {sdl, map, &player, &map_active, &quit};
+	SDL_Thread *thread_ID = NULL;
+
+	thread_ID = SDL_CreateThread(render_thread, "RenderingThread", &data);
 
 	while (!quit)
 	{
 		poll_events(&quit, &e, &player, &mouse, &map_active);
 		player_collision_detection(&player, map);
-		textured_sky(sdl, map);
-		untextured_floor(sdl);
-		raycast(sdl, &player, map, &map_active);
-		if (map_active)
-		{
-			draw_2d_map(sdl, map);
-			draw_player(sdl, &player);
-		}
-		send_frame(sdl);
 	}
+	SDL_WaitThread(thread_ID, NULL);
 }
 
 /**

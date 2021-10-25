@@ -51,4 +51,13 @@ typedef struct line
 	SDL_Point p2;
 } line;
 
+typedef struct thread_data
+{
+	sdl_instance *sdl;
+	map_t *map;
+	struct player *player;
+	SDL_bool *map_active;
+	int *quit;
+} thread_data;
+
 #endif
