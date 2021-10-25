@@ -88,3 +88,9 @@ Contains image files.
 Weapon
 
 https://www.seekpng.com/idown/u2w7u2t4i1y3a9y3_call-of-duty-guns-firearms-gun-weapons-coat/
+
+# Authors
+
+Kibirt Bayou C <kibirtbayou@yahoo.com>
+
+Alex Steve <mutheeal.am@gmail.com>
