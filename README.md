@@ -91,6 +91,6 @@ https://www.seekpng.com/idown/u2w7u2t4i1y3a9y3_call-of-duty-guns-firearms-gun-we
 
 # Authors
 
-Kibirt Bayou C <kibirtbayou@yahoo.com>
+Kibirt Bayou C [@Koderua](https://github.com/Koderua) <kibirtbayou@yahoo.com>
 
-Alex Steve <mutheeal.am@gmail.com>
+Alex Steve [@candiepih](https://github.com/candiepih) <mutheeal.am@gmail.com>
