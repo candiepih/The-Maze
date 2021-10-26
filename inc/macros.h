@@ -13,11 +13,13 @@
 #define SCREEN_HEIGHT 900
 #define MAP_MARGIN 20
 #define PLAYER_WIDTH 10
+#define ORIENT_UP_DOWN 1
+#define ORIENT_LEFT_RIGHT 2
 #define GRID_SIZE 16
 #define WINDOW_TITLE "The Maze. Find your way"
 #define FOV 60
 #define RADIAN(x) (x * (M_PI / 180.0))
-#define ROTATION_MAGNITUDE 2
+#define ROTATION_MAGNITUDE 1
 #define MOVE_SPEED 2
 #define MAX_DRAW_DISTANCE 1024
 

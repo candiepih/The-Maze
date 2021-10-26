@@ -6,11 +6,19 @@
  *
  * @window: SDL window
  * @renderer: SDL renderer
+ * @skybox: pointer to skybox texture
+ * @wall_surface: pointer to sdl wall surface
+ * @wall_texture: pointer to sdl wall texture
+ * @weapon: pointer to sdl weapoon texture
  */
 typedef struct sdl_instance
 {
 	SDL_Window *window;
 	SDL_Renderer *renderer;
+	SDL_Texture *skybox;
+	SDL_Surface *wall_surface;
+	SDL_Texture *wall_texture;
+	SDL_Texture *weapon;
 } sdl_instance;
 
 /**
@@ -47,5 +55,22 @@ typedef struct line
 	SDL_Point p1;
 	SDL_Point p2;
 } line;
+
+/**
+ * struct thread_data - Holds data that will be used during multi-threading
+ * @sdl: structure of sdl_instance
+ * @map: structure of map_t
+ * @player: structure of player
+ * @map_active: pointer to boolean for checking map status
+ * @quit: pointer to integer for program state
+ */
+typedef struct thread_data
+{
+	sdl_instance *sdl;
+	map_t *map;
+	struct player *player;
+	SDL_bool *map_active;
+	int *quit;
+} thread_data;
 
 #endif
