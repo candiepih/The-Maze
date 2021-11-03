@@ -1,65 +1,72 @@
-# The-Maze
+# The Maze
 
-The maze is a 3D game rednered from a 2D map using a technique known as raycasting. This was a technique that was popular in game develpment in thte 90s. Wolfenstein 3D was one of the games that used this technique. This project is an attempt to obtain some knowledge and experience on the multimedia title development process using [SDL - Simple DirectMedia Layer](https://www.libsdl.org/) library.
+The Maze is 3D game built using SDL and Raycasting. On the map, the player can move in all four directions using keys ```W```, ```A```, ```S```, and ```D```. 
 
-`Simple DirectMedia Layer`(*SDL*) is a cross-platform software development library designed to provide a hardware abstraction layer for computer multimedia hardware components, to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D. 
+The player can move through the maze and turn left or right as desired.
 
-More about sdl [from sdl webpage here](https://www.libsdl.org/)
+If the player hits a wall, they cannot move unless they change their direction.
 
-`Ray-casting` is a technique that transform a limited form of data (a very simplified map or floor plan) into a 3D projection by tracing rays from the view point into the viewing volume (LaMothe 942).
+The player can move on several directions and rotate in the same time.
 
-![figure1](https://user-images.githubusercontent.com/44834632/138761695-32039d06-5111-4d56-b8f8-1a18d5fbb239.gif)
+You may encounter enemies as you journey through the maze.
 
-image from https://permadi.com/
+You can *make it rain* using the ```R``` button. You can toggle off the raining by pressing ```R``` again.
+## Installation
 
-# Compilling
-
-This project makes use of `gcc` and `make` for the compilation process.
+Clone this repo:
+```bash
+git clone https://github.com/candiepih/The-Maze.git
+```
+## Compiling
+This project makes use of gcc and make for the compilation process.
 
 ### Windows
+Ensure you have gcc, and make(Can install using chocolatey). Then run the following command:
 
-Ensure you have gcc, and make(*Can install using chocolatey*)
-
-run `make`
-
+```bash 
+make
+```
 ### Linux
+First make sure SDL is installed. If you haven't install SDL by running ``` make linux_install ```. Then run the following command:
 
-First make sure SDL is installed. If you haven't install SDL by running `make linux_install`.
-
-run `make linux` to compile.
+```bash
+make linux 
+```
+to compile.
 
 ### Mac
+Ensure sdl is installed. Then run the following command:
 
-Ensure sdl is installed.
+```bash
+make mac
+```
+## Running
+After successfully compiling run the program using following command:
 
-run `make mac` (*Haven't tested it yet on Mac environment*)
+```bash
+./maze MAP
+```
 
-# Running program
+where ```MAP``` is the name of the file found in the maps folder. You can create other maps and pass them while running program as above. Map files accept only the allowed characters.
 
-After successfully compiling run the program using following command
+## Controls
 
-`./maze MAP`
+```W``` - Moving forward
 
-Where `MAP` is the name of the file found in the maps folder. You can create other maps and pass them while running program as above. Map files accept only the allowed characters.
+```S``` - Moving backward
 
-Have fun!
+```A``` - Look left
 
-# Controls
+```D``` - Look right
 
-`W` - Moving forward
+```Mouse move left/right``` - look left or right
 
-`S` - Moving backward
+```M``` - Turn off map visibility. The 2D map won't be visible on clicking
 
-`A` - Look left
+```N``` - Turn on map visibility. The 2D map will be visible again if it wasn't
 
-`D` - Look right
+***Have fun!***
 
- `Mouse move left/right` - look left or right
- 
- `M` - Turn off map visibility. The 2D map won't be visible on clicking
- 
- `N` - Turn on map visibility. The 2D map will be visible again if it wasn't
- 
 # Directories
 
 [`src`](https://github.com/candiepih/The-Maze/tree/main/src)
@@ -85,12 +92,12 @@ Contains image files.
  
 ## Texture sources
 
-Weapon
+**Weapon**
 
 https://www.seekpng.com/idown/u2w7u2t4i1y3a9y3_call-of-duty-guns-firearms-gun-weapons-coat/
 
 # Authors
 
-Kibirt Bayou C [@Koderua](https://github.com/Koderua) <kibirtbayou@yahoo.com>
-
 Alex Steve [@candiepih](https://github.com/candiepih) <mutheeal.am@gmail.com>
+
+Kibirt Bayou C [@Koderua](https://github.com/Koderua) <kibirtbayou@yahoo.com>
