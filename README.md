@@ -10,7 +10,6 @@ The player can move on several directions and rotate in the same time.
 
 You may encounter enemies as you journey through the maze.
 
-You can *make it rain* using the ```R``` button. You can toggle off the raining by pressing ```R``` again.
 ## Installation
 
 Clone this repo:
