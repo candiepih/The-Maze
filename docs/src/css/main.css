@@ -1,0 +1,108 @@
+@font-face {
+  font-family: poppins;
+  src: url("/src/fonts/poppins.otf");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: poppinsLight;
+  src: url("/src/fonts/Poppins-Light.ttf");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: poppinsBold;
+  src: url("/src/fonts/Poppins-Bold.ttf");
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: poppins;
+}
+
+section.landing-main {
+  height: 100vh;
+  width: 100%;
+  background: url("/images/landing.png") no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+section.landing-main .heading {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+section.landing-main .heading .container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 50%;
+  transform: translateY(-50%);
+  width: 70%;
+  color: black;
+}
+
+section.landing-main .heading .container h1 {
+  font-size: 5rem;
+  font-family: poppinsBold;
+  color: green;
+}
+
+section.landing-main .heading .container p {
+  width: 100%;
+  margin-top: -40px;
+}
+
+section.about {
+  background-color: green;
+  padding: 50px;
+}
+
+section.about .container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+section.about .container h1 {
+  font-size: 4rem;
+  line-height: 40px;
+  font-family: poppinsBold;
+}
+
+section.about .container p {
+  text-align: left;
+}
+
+footer .container {
+  text-align: center;
+}
+
+footer .container .links {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+footer .container .links img {
+  height: 100px;
+}
+
+footer .container .links a {
+  color: black;
+  transition: 0.4s ease-in-out;
+}
+
+footer .container .links a:hover {
+  color: #9b8567;
+  text-decoration: line-through;
+}
