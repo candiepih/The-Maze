@@ -8,8 +8,6 @@ If the player hits a wall, they cannot move unless they change their direction.
 
 The player can move on several directions and rotate in the same time.
 
-You may encounter enemies as you journey through the maze.
-
 ## Installation
 
 Clone this repo:
