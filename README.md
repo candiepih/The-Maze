@@ -96,6 +96,23 @@ Contains image files.
 
 https://www.seekpng.com/idown/u2w7u2t4i1y3a9y3_call-of-duty-guns-firearms-gun-weapons-coat/
 
+## Contributing
+
+- Read the source files in ```src``` folder and the header files in ```inc``` folder.
+- Clone the repo and make a new branch: $ git checkout https://github.com/candiepih/The-Maze -b [name_of_new_branch].
+- Add a feature, fix a bug, or refactor some code :)
+- Write/update tests for the changes you made, if necessary.
+- Update README.md if necessary.
+- Open a Pull Request with a comprehensive description of changes.
+
+## Related
+
+*[The Maze](https://alx-intranet.hbtn.io/concepts/133)* - Holberton Project Page
+
+## License
+```BSD```
+
+
 # Authors
 
 Alex Steve [@candiepih](https://github.com/candiepih) <mutheeal.am@gmail.com>
