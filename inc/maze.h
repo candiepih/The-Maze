@@ -3,10 +3,13 @@
 
 #ifdef LINUX
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_thread.h>
 #elif defined(MAC)
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_thread.h>
 #else
 #include <SDL.h>
+#include <SDL_thread.h>
 #endif
 
 #include <stdio.h>
